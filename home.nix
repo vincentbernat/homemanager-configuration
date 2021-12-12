@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     bat
     glibcLocales
+    mp4v2
     nix
     nix-zsh-completions
     yt-dlp
