@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     bat
+    easyeffects
     glibcLocales
     mp4v2
     nix
