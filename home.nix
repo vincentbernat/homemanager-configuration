@@ -9,11 +9,11 @@
 
   home.packages = with pkgs; [
     bat
-    easyeffects
     glibcLocales
     mp4v2
     nix
     nix-zsh-completions
+    openssh
     yt-dlp
   ];
 
