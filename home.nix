@@ -7,15 +7,26 @@
   home.homeDirectory = "/home/bernat";
   home.stateVersion = "21.05";
 
-  home.packages = with pkgs; [
-    bat
-    glibcLocales
-    mp4v2
-    nix
-    nix-zsh-completions
-    openssh
-    yt-dlp
-  ];
+  home.packages = let
+    openssh = pkgs.openssh.overrideAttrs (old: {
+      checkTarget = [];
+      patches = (old.patches or []) ++ [
+        (pkgs.fetchpatch {
+          url = "https://bugzilla.mindrot.org/attachment.cgi?id=3547";
+          sha256 = "sha256-uF+pPRlO9UmavjqQox6RRGFKYrmxbqygXMr1Tx7J3mA=";
+        })
+      ];
+    });
+  in
+    with pkgs; [
+      bat
+      glibcLocales
+      mp4v2
+      nix
+      nix-zsh-completions
+      openssh
+      yt-dlp
+    ];
 
   home.activation.diff = lib.hm.dag.entryBefore ["installPackages"] ''
     nix store diff-closures "$oldGenPath" "$newGenPath"
