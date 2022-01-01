@@ -21,6 +21,7 @@
     with pkgs; [
       bat
       glibcLocales
+      i3-gaps
       mp4v2
       nix
       nix-zsh-completions
