@@ -5,7 +5,7 @@
 
   home.username = "bernat";
   home.homeDirectory = "/home/bernat";
-  home.stateVersion = "21.05";
+  home.stateVersion = "20.09";
 
   home.packages = let
     openssh = pkgs.openssh.overrideAttrs (old: {
