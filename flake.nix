@@ -12,7 +12,9 @@
         system = "x86_64-linux";
         homeDirectory = "/home/bernat";
         username = "bernat";
-        configuration.imports = [ ./home.nix ];
+        configuration = {
+          imports = [ ./home.nix ];
+        };
       };
     };
   };
