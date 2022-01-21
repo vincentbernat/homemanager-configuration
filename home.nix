@@ -17,6 +17,14 @@
         })
       ];
     });
+    i3 = pkgs.i3-gaps.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/i3/i3/pull/4622.patch";
+          sha256 = "sha256-V/Pq5FtM+fM+pOqco48cB88r9/VZrM3daYnxkC8sfpE=";
+        })
+      ];
+    });
   in
     with pkgs; [
       bat
@@ -24,7 +32,7 @@
         allLocales = false;
         locales = ["en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8"];
       })
-      i3-gaps
+      i3
       mp4v2
       nix
       nix-zsh-completions
