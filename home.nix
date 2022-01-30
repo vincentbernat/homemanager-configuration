@@ -19,9 +19,15 @@
     });
     i3 = pkgs.i3-gaps.overrideAttrs (old: {
       patches = (old.patches or []) ++ [
+        # move to output next|prev
         (pkgs.fetchpatch {
           url = "https://github.com/i3/i3/pull/4622.patch";
           sha256 = "sha256-V/Pq5FtM+fM+pOqco48cB88r9/VZrM3daYnxkC8sfpE=";
+        })
+        # Mouse wheel should focus windows too
+        (pkgs.fetchpatch {
+          url = "https://github.com/vincentbernat/i3/commit/1ba57fd0256f184648c3e10d2523df08b0cc6f5b.patch";
+          sha256 = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
         })
       ];
     });
