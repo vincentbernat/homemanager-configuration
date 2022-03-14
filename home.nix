@@ -9,6 +9,11 @@
 
   home.packages = let
     openssh = pkgs.openssh.overrideAttrs (old: {
+      version = "8.9p1";
+      src = pkgs.fetchurl {
+        url = "mirror://openbsd/OpenSSH/portable/openssh-8.9p1.tar.gz";
+        sha256 = "sha256:1ry5prcax0134v6srkgznpl9ch5snkgq7yvjqvd8c5mbnxa7cjgx";
+      };
       checkTarget = [];
       patches = (old.patches or []) ++ [
         (pkgs.fetchpatch {
