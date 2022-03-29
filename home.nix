@@ -49,6 +49,7 @@
       nix-zsh-completions
       nixpkgs-fmt
       openssh
+      yarn
       yt-dlp
     ];
 
