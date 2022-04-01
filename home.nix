@@ -44,6 +44,7 @@
         locales = ["en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8"];
       })
       i3
+      maim
       mp4v2
       nix
       nix-zsh-completions
