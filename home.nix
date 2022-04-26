@@ -34,10 +34,14 @@
   in
     with pkgs; [
       bat
+      (emacs.override {
+        nativeComp = true;
+      })
       (glibcLocales.override {
         allLocales = false;
         locales = ["en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8"];
       })
+      dunst
       i3
       maim
       mp4v2
