@@ -11,9 +11,19 @@
     openssh = pkgs.openssh.overrideAttrs (old: {
       checkTarget = [];
       patches = (old.patches or []) ++ [
+        # Host in ssh -G
         (pkgs.fetchpatch {
           url = "https://bugzilla.mindrot.org/attachment.cgi?id=3547";
           sha256 = "sha256-uF+pPRlO9UmavjqQox6RRGFKYrmxbqygXMr1Tx7J3mA=";
+        })
+      ];
+    });
+    dunst = pkgs.dunst.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [
+        # icon scaling
+        (pkgs.fetchpatch {
+          url = "https://github.com/dunst-project/dunst/pull/1070.patch";
+          sha256 = "sha256-1XGQ51hmlwN5RyA96I6fv7BRFkkjXg4djbUO18744xY=";
         })
       ];
     });
@@ -34,6 +44,7 @@
   in
     with pkgs; [
       bat
+      dunst
       (emacs.override {
         nativeComp = true;
       })
@@ -41,7 +52,6 @@
         allLocales = false;
         locales = ["en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8"];
       })
-      dunst
       i3
       maim
       mp4v2
