@@ -18,15 +18,6 @@
         })
       ];
     });
-    dunst = pkgs.dunst.overrideAttrs (old: {
-      patches = (old.patches or []) ++ [
-        # icon scaling
-        (pkgs.fetchpatch {
-          url = "https://github.com/dunst-project/dunst/pull/1070.patch";
-          sha256 = "sha256-1XGQ51hmlwN5RyA96I6fv7BRFkkjXg4djbUO18744xY=";
-        })
-      ];
-    });
     i3 = pkgs.i3-gaps.overrideAttrs (old: {
       patches = (old.patches or []) ++ [
         # move to output next|prev
@@ -59,8 +50,11 @@
       nix-zsh-completions
       nixpkgs-fmt
       openssh
+      pipewire
+      pipewire.pulse
       yarn
       yt-dlp
+      wireplumber
     ];
 
   home.activation.diff = lib.hm.dag.entryBefore ["installPackages"] ''
