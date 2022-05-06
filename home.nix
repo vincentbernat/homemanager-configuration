@@ -18,6 +18,13 @@
         })
       ];
     });
+    emacs = pkgs.emacs.override {
+      nativeComp = true;
+    };
+    glibcLocales = pkgs.glibcLocales.override {
+      allLocales = false;
+      locales = ["en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8"];
+    };
     i3 = pkgs.i3-gaps.overrideAttrs (old: {
       patches = (old.patches or []) ++ [
         # move to output next|prev
@@ -35,25 +42,26 @@
   in
     with pkgs; [
       bat
-      dunst
-      (emacs.override {
-        nativeComp = true;
-      })
-      (glibcLocales.override {
-        allLocales = false;
-        locales = ["en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8"];
-      })
-      i3
-      maim
+      emacs
+      glibcLocales
       mp4v2
+      openssh
+      yarn
+      yt-dlp
+    ] ++ [
+      # Nix-related
       nix
       nix-zsh-completions
       nixpkgs-fmt
-      openssh
+    ] ++ [
+      # i3-related
+      dunst
+      i3
+      maim
+    ] ++ [
+      # Pipewire
       pipewire
       pipewire.pulse
-      yarn
-      yt-dlp
       wireplumber
     ];
 
