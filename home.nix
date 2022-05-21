@@ -60,7 +60,6 @@
       maim
     ] ++ [
       # Pipewire
-      easyeffects
       pipewire
       pipewire.pulse
       wireplumber
