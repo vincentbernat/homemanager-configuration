@@ -24,6 +24,15 @@
           ln -s "$out/usr/lib" "$out/lib"
         '';
       };
+      dunst = pkgs.dunst.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          # offset uses DPI
+          (pkgs.fetchpatch {
+            url = "https://github.com/dunst-project/dunst/commit/0a86f0940a5c673648fd87d5dd7d621fac4935af.patch";
+            sha256 = "sha256-caL/ZcQHhUmhZRf7g1YsDU96Eiwlfn2tIIhpD8ml4Yw=";
+          })
+        ];
+      });
       openssh = pkgs.openssh.overrideAttrs (old: {
         checkTarget = [ ];
         patches = (old.patches or [ ]) ++ [
