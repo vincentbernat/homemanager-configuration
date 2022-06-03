@@ -8,6 +8,18 @@
   home.stateVersion = "20.09";
 
   home.packages = let
+    firefox = pkgs.stdenv.mkDerivation {
+      inherit (pkgs.firefox-bin-unwrapped) pname version src;
+      dontStrip = true;
+      dontPatchELF = true;
+      installPhase = ''
+        mkdir -p "$prefix/usr/lib/firefox-bin-${firefox.version}"
+        cp -r * "$prefix/usr/lib/firefox-bin-${firefox.version}"
+
+        mkdir -p "$out/bin"
+        ln -s "$prefix/usr/lib/firefox-bin-${firefox.version}/firefox" "$out/bin/"
+      '';
+    };
     openssh = pkgs.openssh.overrideAttrs (old: {
       checkTarget = [];
       patches = (old.patches or []) ++ [
@@ -43,6 +55,7 @@
     with pkgs; [
       bat
       emacs
+      firefox
       glibcLocales
       mp4v2
       openssh
