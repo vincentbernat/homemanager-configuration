@@ -11,16 +11,21 @@
     let
       # Firefox may not be up-to-date in Debian due to toolchain
       # issues. Nixpkgs is quicker.
-      firefox = pkgs.stdenv.mkDerivation {
-        inherit (pkgs.firefox-bin-unwrapped) pname version src;
+      firefox = pkgs.stdenv.mkDerivation rec {
+        inherit (pkgs.firefox-bin-unwrapped) pname;
+        version = "101.0.1";
+        src = pkgs.fetchurl {
+          url = "mirror://mozilla/firefox/releases/${version}/source/firefox-${version}.source.tar.xz";
+          sha512 = "435a7f6013582933e75c41e554a45beda30b5affd7d3ed7d2876026609ba7f17b2c20b507d9d0c9ce2379e335ec09b021257ba30ac55fabf02dca54b03ea70b4";
+        };
         dontStrip = true;
         dontPatchELF = true;
         installPhase = ''
-          mkdir -p "$prefix/usr/lib/firefox-bin-${firefox.version}"
-          cp -r * "$prefix/usr/lib/firefox-bin-${firefox.version}"
+          mkdir -p "$prefix/usr/lib/firefox-bin-${version}"
+          cp -r * "$prefix/usr/lib/firefox-bin-${version}"
 
           mkdir -p "$out/bin"
-          ln -s "$prefix/usr/lib/firefox-bin-${firefox.version}/firefox" "$out/bin/"
+          ln -s "$prefix/usr/lib/firefox-bin-${version}/firefox" "$out/bin/"
           ln -s "$out/usr/lib" "$out/lib"
         '';
       };
