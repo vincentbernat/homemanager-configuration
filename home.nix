@@ -11,22 +11,72 @@
     let
       # Firefox may not be up-to-date in Debian due to toolchain
       # issues. Nixpkgs is quicker.
-      firefox = pkgs.stdenv.mkDerivation rec {
-        inherit (pkgs.firefox-bin-unwrapped) pname;
-        version = "101.0.1";
-        src = pkgs.fetchurl {
-          url = "http://archive.mozilla.org/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
-          sha256 = "ddea6f2204b2bbd2f4f8ddc16370c7b05a3afc40f1d207700a648f9b97fda108";
-        };
+      firefox-or-thunderbird = which: pkgs.stdenv.mkDerivation {
+        inherit (which) pname version src;
         phases = [ "unpackPhase" "installPhase" ];
+        desktopItem = pkgs.makeDesktopItem rec {
+          inherit (which) genericName mimeTypes;
+          name = which.pname;
+          exec = "${which.pname} %U";
+          desktopName = (lib.toUpper (lib.substring 0 1 which.pname) + lib.substring 1 (-1) which.pname);
+          icon = which.pname;
+          startupWMClass = desktopName;
+          startupNotify = true;
+        };
         installPhase = ''
-          mkdir -p "$prefix/usr/lib/firefox-bin-${version}"
-          cp -r * "$prefix/usr/lib/firefox-bin-${version}"
+          mkdir -p "$prefix/usr/lib/${which.pname}-bin-${which.version}"
+          cp -r * "$prefix/usr/lib/${which.pname}-bin-${which.version}"
 
           mkdir -p "$out/bin"
-          ln -s "$prefix/usr/lib/firefox-bin-${version}/firefox" "$out/bin/"
+          cat > "$out/bin/${which.pname}" <<EOF
+          #!/bin/sh
+          export MOZ_LEGACY_PROFILES=1
+          "$prefix/usr/lib/${which.pname}-bin-${which.version}/${which.pname}" "\$@"
+          EOF
+          chmod +x "$out/bin/${which.pname}"
           ln -s "$out/usr/lib" "$out/lib"
+
+          for res in 16 32 48 64 128; do
+          mkdir -p "$out/share/icons/hicolor/''${res}x''${res}/apps"
+          icon=$( find "$out/lib/" -name "default''${res}.png" )
+             if [ -e "$icon" ]; then ln -s "$icon" "$out/share/icons/hicolor/''${res}x''${res}/apps/${which.pname}.png"
+             fi
+          done
+          install -D -t $out/share/applications $desktopItem/share/applications/*
         '';
+      };
+      firefox = firefox-or-thunderbird rec {
+        pname = "firefox";
+        version = "102.0b6";
+        src = pkgs.fetchurl {
+          url = "http://archive.mozilla.org/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
+          sha256 = "acebc26b0dc90999ce73ae71cc9fc697392b70eaf97b738c26da85893643cb9e";
+        };
+        genericName = "Web Browser";
+        mimeTypes = [
+          "text/html"
+          "text/xml"
+          "application/xhtml+xml"
+          "application/vnd.mozilla.xul+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+          "x-scheme-handler/ftp"
+        ];
+      };
+      thunderbird = firefox-or-thunderbird rec {
+        pname = "thunderbird";
+        version = "102.0b4";
+        src = pkgs.fetchurl {
+          url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
+          sha256 = "092f8dc2f2e1115011268145f508ca968419187c4fa3fcbea0fedc1fd4be45bd";
+        };
+        genericName = "Mail Client";
+        mimeTypes = [
+          "message/rfc822"
+          "x-scheme-handler/mailto"
+          "text/calendar"
+          "text/x-vcard"
+        ];
       };
       dunst = pkgs.dunst.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
@@ -73,6 +123,7 @@
       bat
       emacs
       firefox
+      thunderbird
       glibcLocales
       mp4v2
       openssh
