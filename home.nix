@@ -15,11 +15,10 @@
         inherit (pkgs.firefox-bin-unwrapped) pname;
         version = "101.0.1";
         src = pkgs.fetchurl {
-          url = "mirror://mozilla/firefox/releases/${version}/source/firefox-${version}.source.tar.xz";
-          sha512 = "435a7f6013582933e75c41e554a45beda30b5affd7d3ed7d2876026609ba7f17b2c20b507d9d0c9ce2379e335ec09b021257ba30ac55fabf02dca54b03ea70b4";
+          url = "http://archive.mozilla.org/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
+          sha256 = "ddea6f2204b2bbd2f4f8ddc16370c7b05a3afc40f1d207700a648f9b97fda108";
         };
-        dontStrip = true;
-        dontPatchELF = true;
+        phases = [ "unpackPhase" "installPhase" ];
         installPhase = ''
           mkdir -p "$prefix/usr/lib/firefox-bin-${version}"
           cp -r * "$prefix/usr/lib/firefox-bin-${version}"
