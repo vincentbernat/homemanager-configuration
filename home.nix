@@ -31,7 +31,7 @@
           cat > "$out/bin/${which.pname}" <<EOF
           #!/bin/sh
           export MOZ_LEGACY_PROFILES=1
-          "$prefix/usr/lib/${which.pname}-bin-${which.version}/${which.pname}" "\$@"
+          exec "$prefix/usr/lib/${which.pname}-bin-${which.version}/${which.pname}" "\$@"
           EOF
           chmod +x "$out/bin/${which.pname}"
           ln -s "$out/usr/lib" "$out/lib"
