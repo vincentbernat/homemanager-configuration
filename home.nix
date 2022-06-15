@@ -47,10 +47,10 @@
       };
       firefox = firefox-or-thunderbird rec {
         pname = "firefox";
-        version = "102.0b7";
+        version = "102.0b8";
         src = pkgs.fetchurl {
           url = "http://archive.mozilla.org/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
-          sha256 = "81172887e1864f6791fc6af7e47f7b304a251ed7e4ef53b5daf89053b437f95a";
+          sha256 = "sha256-f+ABWnUfi8xKo1p8SU/bqVl5b/npBtiiwCtWuiPiK1E=";
         };
         genericName = "Web Browser";
         mimeTypes = [
