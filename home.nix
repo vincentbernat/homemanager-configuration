@@ -47,10 +47,10 @@
       };
       firefox = firefox-or-thunderbird rec {
         pname = "firefox";
-        version = "102.0b8";
+        version = "102.0b9";
         src = pkgs.fetchurl {
           url = "http://archive.mozilla.org/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
-          sha256 = "sha256-f+ABWnUfi8xKo1p8SU/bqVl5b/npBtiiwCtWuiPiK1E=";
+          sha256 = "sha256-BcK6IlWdfTW5MZatk70yaMuFlGwQpXgk6vKr4pjj5lA=";
         };
         genericName = "Web Browser";
         mimeTypes = [
@@ -65,10 +65,10 @@
       };
       thunderbird = firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "102.0b5";
+        version = "102.0b7";
         src = pkgs.fetchurl {
           url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
-          sha256 = "sha256-3UowzDEAffzAKx7G6uqCeMn/w3iHR9wHmQhrO+Ur1EA=";
+          sha256 = "sha256-mQ3/khcnacvgLXjRaMywXimCKeO1AEgcmM7swnbyjFU=";
         };
         genericName = "Mail Client";
         mimeTypes = [
