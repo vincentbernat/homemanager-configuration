@@ -100,6 +100,19 @@
       emacs = pkgs.emacs.override {
         nativeComp = true;
       };
+      pipewire = pkgs.pipewire.overrideAttrs (old: rec {
+        version = "0.3.52";
+        src = pkgs.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "pipewire";
+          repo = "pipewire";
+          rev = version;
+          sha256 = "sha256-JWmO36+OF2O9sLB+Z0znwm3TH+O+pEv3cXnuwP6Wy1E=";
+        };
+        mesonFlags = old.mesonFlags ++ [
+          "-Dbluez5-codec-lc3plus=disabled"
+        ];
+      });
       glibcLocales = pkgs.glibcLocales.override {
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
