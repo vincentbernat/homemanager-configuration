@@ -109,6 +109,13 @@
           rev = version;
           sha256 = "sha256-JWmO36+OF2O9sLB+Z0znwm3TH+O+pEv3cXnuwP6Wy1E=";
         };
+        patches = (old.patches or [ ]) ++ [
+          # Only use 48 kHz sample rate
+          (pkgs.fetchpatch {
+            url = "https://gitlab.freedesktop.org/pipewire/pipewire/-/commit/16a7c274989f47b0c0d8ba192a30316b545bd26a.patch";
+            sha256 = "sha256-VZ7ChjcR/PGfmH2DmLxfIhd3mj9668l9zLO4k2KBoqg=";
+          })
+        ];
         mesonFlags = old.mesonFlags ++ [
           "-Dbluez5-codec-lc3plus=disabled"
         ];
@@ -134,6 +141,7 @@
     in
     with pkgs; [
       bat
+      dogdns
       emacs
       firefox
       thunderbird
