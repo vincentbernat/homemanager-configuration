@@ -8,15 +8,12 @@
 
   outputs = inputs:
     let
-      system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      username = "bernat";
+      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     in
     {
-      homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs username;
-        homeDirectory = "/home/${username}";
-        configuration = import ./home.nix;
+      homeConfigurations.bernat = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
       };
     };
 }
