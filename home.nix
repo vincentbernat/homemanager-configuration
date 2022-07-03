@@ -144,7 +144,6 @@
       # i3-related
       dunst
       i3
-      maim
       xssproxy
     ] ++ [
       # Pipewire
