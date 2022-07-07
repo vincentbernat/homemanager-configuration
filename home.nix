@@ -126,6 +126,7 @@
     in
     with pkgs; [
       bat
+      delta
       dogdns
       emacs
       firefox
