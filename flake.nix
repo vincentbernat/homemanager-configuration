@@ -2,8 +2,14 @@
   description = "Home manager flake";
   inputs = {
     nixpkgs.url = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vbeterm = {
+      url = "github:vincentbernat/vbeterm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -14,6 +20,7 @@
       homeConfigurations.bernat = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
+        extraSpecialArgs = { flakes = inputs; };
       };
     };
 }

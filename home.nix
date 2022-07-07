@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, flakes, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -135,6 +135,10 @@
       openssh
       yarn
       yt-dlp
+      flakes.vbeterm.packages."x86_64-linux".default
+      # Cannot add:
+      # - xsecurelock (uses PAM)
+      # - polybar (???)
     ] ++ [
       # Nix-related
       nix
