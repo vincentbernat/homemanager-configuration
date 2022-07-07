@@ -9,6 +9,7 @@
 
   home.packages =
     let
+      system = pkgs.stdenv.hostPlatform.system;
       # Firefox may not be up-to-date in Debian due to toolchain
       # issues. Nixpkgs is quicker.
       firefox-or-thunderbird = which: pkgs.stdenv.mkDerivation {
@@ -136,7 +137,7 @@
       openssh
       yarn
       yt-dlp
-      flakes.vbeterm.packages."x86_64-linux".default
+      flakes.vbeterm.packages."${system}".default
       # Cannot add:
       # - xsecurelock (uses PAM)
       # - polybar (???)
