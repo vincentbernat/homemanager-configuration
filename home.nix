@@ -153,8 +153,3 @@
     nix store diff-closures "$oldGenPath" "$newGenPath"
   '';
 }
-
-# To install:
-#  - check where nix command is installed (readlink -f =nix)
-#  - remove everything from nix-env (nix-env -u)
-#  - install with PATH=/nix/store/...:$PATH nix-shell '<home-manager>' -A install
