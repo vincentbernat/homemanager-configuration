@@ -62,10 +62,10 @@
       };
       thunderbird = firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "103.0b4";
+        version = "104.0a1";
         src = pkgs.fetchurl {
-          url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
-          sha256 = "sha256-oGXvSBTzQwXUtH+QTSgSW3mdZSYPDWTmkhoed4BsDPo=";
+          url = "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/EHEn6qDORsyUp_6cUM0ONQ/runs/0/artifacts/public/build/target.tar.bz2";
+          sha256 = "178e5017b277c848d3a86ffad19e71906edccf4e0e9bd46afb59044ffec380f0";
         };
         genericName = "Mail Client";
         mimeTypes = [
@@ -118,7 +118,6 @@
     in
     with pkgs; [
       bat
-      delta
       dogdns
       emacs
       firefox
