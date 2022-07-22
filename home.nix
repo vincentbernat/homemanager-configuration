@@ -97,16 +97,6 @@
       emacs = pkgs.emacs.override {
         nativeComp = true;
       };
-      pipewire = pkgs.pipewire.overrideAttrs (old: rec {
-        version = "0.3.56";
-        src = pkgs.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "pipewire";
-          repo = "pipewire";
-          rev = version;
-          sha256 = "sha256-wbHHr7BW8Gdj9D1IjzOuD6VuXApJ5E0Zde2iKWImzxg=";
-        };
-      });
       glibcLocales = pkgs.glibcLocales.override {
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
