@@ -62,10 +62,10 @@
       };
       thunderbird = firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "104.0a1";
+        version = "105.0a1";
         src = pkgs.fetchurl {
-          url = "https://ftp.mozilla.org/pub/thunderbird/nightly/2022/07/2022-07-25-10-46-47-comm-central/thunderbird-104.0a1.en-US.linux-x86_64.tar.bz2";
-          sha256 = "sha256-kHUSsVaOFDJ7YT7zTxnsXaViR0x5eNT6MlSvY1a2qQk=";
+          url = "https://ftp.mozilla.org/pub/thunderbird/nightly/2022/07/2022-07-27-10-25-11-comm-central/thunderbird-${version}.en-US.linux-x86_64.tar.bz2";
+          sha256 = "sha256-wntX47lskZDaVOahIe//NEJ5cRtTuEzigzWVafb2VWo=";
         };
         genericName = "Mail Client";
         mimeTypes = [
