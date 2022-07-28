@@ -113,6 +113,11 @@
             url = "https://github.com/vincentbernat/i3/commit/1ba57fd0256f184648c3e10d2523df08b0cc6f5b.patch";
             sha256 = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
           })
+          # Tiling drag
+          (pkgs.fetchpatch {
+            url = "https://github.com/i3/i3/pull/3085.patch";
+            sha256 = "sha256-Qa+rj0m4fPRSQAiV6JuvfrKXe4orZP9WXAnN6so16qs=";
+          })
         ];
       });
     in
