@@ -76,13 +76,12 @@
         ];
       };
       xssproxy = pkgs.xssproxy.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          # Flush stdout on logging
-          (pkgs.fetchpatch {
-            url = "https://github.com/timakro/xssproxy/pull/1.patch";
-            sha256 = "sha256-Quoa7ZvuSIGOX/2q6rX+JTx1DdOtR1KI5xJGUFb0OX4=";
-          })
-        ];
+        src = pkgs.fetchFromGitHub {
+          owner = "vincentbernat";
+          repo = "xssproxy";
+          rev = "9f7db86";
+          sha256 = "sha256-BE/v1CJAwKwxlK3Xg3ezD+IXyT7ZFGz3bQzGxFQfEnU=";
+        };
       });
       openssh = pkgs.openssh.overrideAttrs (old: {
         checkTarget = [ ];
