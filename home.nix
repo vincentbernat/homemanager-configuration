@@ -64,8 +64,8 @@
         pname = "thunderbird";
         version = "105.0a1";
         src = pkgs.fetchurl {
-          url = "https://ftp.mozilla.org/pub/thunderbird/nightly/2022/07/2022-07-29-04-18-59-comm-central/thunderbird-${version}.en-US.linux-x86_64.tar.bz2";
-          sha256 = "sha256-cEfOp/R2qstIR4COWg73rT3/5s5nNQe7D/WL0Kc5ysY=";
+          url = "https://ftp.mozilla.org/pub/thunderbird/nightly/2022/08/2022-08-02-10-38-15-comm-central/thunderbird-${version}.en-US.linux-x86_64.tar.bz2";
+          sha256 = "sha256-q86bp5t0w24C6UI627gvDfsaGIVWHI35GRR/UqH4vWU=";
         };
         genericName = "Mail Client";
         mimeTypes = [
