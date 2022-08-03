@@ -122,6 +122,7 @@
     in
     with pkgs; [
       bat
+      difftastic
       dogdns
       emacs
       firefox
