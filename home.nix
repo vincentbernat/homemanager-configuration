@@ -14,7 +14,7 @@
       # issues. Nixpkgs is quicker.
       firefox-or-thunderbird = which: pkgs.stdenv.mkDerivation {
         inherit (which) pname version src;
-        phases = [ "unpackPhase" "installPhase" ];
+        phases = [ "unpackPhase" "patchPhase" "installPhase" ];
         desktopItem = pkgs.makeDesktopItem rec {
           inherit (which) genericName mimeTypes;
           name = which.pname;
@@ -60,7 +60,7 @@
           "x-scheme-handler/ftp"
         ];
       };
-      thunderbird = firefox-or-thunderbird rec {
+      thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
         version = "105.0a1";
         src = pkgs.fetchurl {
@@ -74,7 +74,20 @@
           "text/calendar"
           "text/x-vcard"
         ];
-      };
+      }).overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          ./patches/thunderbird-identities.patch
+        ];
+        prePatch = ''
+          ${pkgs.unzip}/bin/unzip -d omni omni.ja
+        '';
+        postPatch = ''
+          cd omni
+          ${pkgs.zip}/bin/zip -0DXqr ../omni.ja *
+          cd ..
+          rm -rf omni
+        '';
+      });
       xssproxy = pkgs.xssproxy.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "vincentbernat";

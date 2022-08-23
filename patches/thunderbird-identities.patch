@@ -1,0 +1,46 @@
+--- ./omni/modules/MailUtils.jsm	2022-08-23 03:45:28.000000000 +0200
++++ ./omni/modules/MailUtils.jsm	2022-08-23 16:28:26.192547963 +0200
+@@ -474,32 +474,28 @@
+         optionalHint
+       );
+ 
+-      for (let hint of hints) {
+-        for (let identity of identities.filter(i => i.email)) {
+-          if (hint.email.toLowerCase() == identity.email.toLowerCase()) {
+-            return [identity, hint];
+-          }
+-        }
+-      }
+-
+-      // Lets search again, this time for a match from catchAll.
++      // Let's search for a match from catchAll.
+       for (let hint of hints) {
+         for (let identity of identities.filter(
+           i => i.email && i.catchAll && i.catchAllHint
+         )) {
+           for (let caHint of identity.catchAllHint.toLowerCase().split(",")) {
+-            // If the hint started with *@, it applies to the whole domain. In
+-            // this case return the hint so it can be used for replying.
+-            // If the hint was for a more specific hint, don't return a hint
+-            // so that the normal from address for the identity is used.
+-            let wholeDomain = caHint.trim().startsWith("*@");
+             caHint = caHint.trim().replace(/^\*/, ""); // Remove initial star.
+             if (hint.email.toLowerCase().includes(caHint)) {
+-              return wholeDomain ? [identity, hint] : [identity, null];
++              return [identity, null];
+             }
+           }
+         }
+       }
++
++      // Check against the email addresses of each identity.
++      for (let hint of hints) {
++        for (let identity of identities.filter(i => i.email)) {
++          if (hint.email.toLowerCase() == identity.email.toLowerCase()) {
++            return [identity, hint];
++          }
++        }
++      }
+     }
+ 
+     // Still no matches? Give up and pick the default or the first one.
