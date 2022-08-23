@@ -12,9 +12,8 @@
       system = pkgs.stdenv.hostPlatform.system;
       # Firefox may not be up-to-date in Debian due to toolchain
       # issues. Nixpkgs is quicker.
-      firefox-or-thunderbird = which: pkgs.stdenv.mkDerivation {
+      firefox-or-thunderbird = which: pkgs.stdenvNoCC.mkDerivation {
         inherit (which) pname version src;
-        phases = [ "unpackPhase" "patchPhase" "installPhase" ];
         desktopItem = pkgs.makeDesktopItem rec {
           inherit (which) genericName mimeTypes;
           name = which.pname;
