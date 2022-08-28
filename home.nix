@@ -131,6 +131,20 @@
           })
         ];
       });
+      polybar = (pkgs.polybar.override {
+        pulseSupport = true;
+        i3-gaps = i3;
+        i3GapsSupport = true;
+      }).overrideAttrs (old: {
+        version = "3.6.1";
+        src = pkgs.fetchFromGitHub {
+          owner = "vincentbernat";
+          repo = "polybar";
+          rev = "ed9506028c70";
+          fetchSubmodules = true;
+          sha256 = "sha256-FRYglx3Y8VjhJHE26gteBkWaQISKnxo2GLgeik78CsA=";
+        };
+      });
     in
     with pkgs; [
       bat
@@ -147,7 +161,6 @@
       flakes.vbeterm.packages."${system}".default
       # Cannot add:
       # - xsecurelock (uses PAM)
-      # - polybar (???)
     ] ++ [
       # Nix-related
       nix
@@ -157,6 +170,7 @@
       # i3-related
       dunst
       i3
+      polybar
       xssproxy
     ] ++ [
       # Pipewire
