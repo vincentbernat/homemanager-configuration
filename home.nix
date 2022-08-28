@@ -136,13 +136,13 @@
         i3-gaps = i3;
         i3GapsSupport = true;
       }).overrideAttrs (old: {
-        version = "3.6.1";
+        version = "3.6.2";
         src = pkgs.fetchFromGitHub {
           owner = "vincentbernat";
           repo = "polybar";
-          rev = "ed9506028c70";
+          rev = "40067fab8072";
           fetchSubmodules = true;
-          sha256 = "sha256-FRYglx3Y8VjhJHE26gteBkWaQISKnxo2GLgeik78CsA=";
+          sha256 = "sha256-BweRFAcPjwlnvxPHWJKf0I24XJ4vkgnUnaGievWmcDk=";
         };
       });
     in
