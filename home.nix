@@ -87,11 +87,12 @@
           rm -rf omni
         '';
       });
-      xssproxy = pkgs.xssproxy.overrideAttrs (old: {
+      xssproxy = pkgs.xssproxy.overrideAttrs (old: rec {
+        version = "1.1.0";
         src = pkgs.fetchFromGitHub {
           owner = "vincentbernat";
           repo = "xssproxy";
-          rev = "9f7db86";
+          rev = "v${version}";
           sha256 = "sha256-BE/v1CJAwKwxlK3Xg3ezD+IXyT7ZFGz3bQzGxFQfEnU=";
         };
       });
