@@ -61,10 +61,10 @@
       };
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "105.0b2";
+        version = "105.0b3";
         src = pkgs.fetchurl {
           url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
-          sha256 = "sha256-2CY1DA4JXK/Do5SLsLz+mefKk84ix0sUrSw3sJbdVVo=";
+          sha256 = "sha256-Q5xpqEHNoBmCMgGJAZAS0o+2aanHai5w+W4IH3gNrDY=";
         };
         genericName = "Mail Client";
         mimeTypes = [
@@ -115,7 +115,7 @@
       };
       i3 = pkgs.i3-gaps.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
-          # move to output next|prev
+          # focus output next|prev
           (pkgs.fetchpatch {
             url = "https://github.com/i3/i3/pull/4622.patch";
             sha256 = "sha256-V/Pq5FtM+fM+pOqco48cB88r9/VZrM3daYnxkC8sfpE=";
