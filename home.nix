@@ -181,6 +181,6 @@
     ];
 
   home.activation.diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
-    [[ -z "''${oldGenPath:-}" ]] || nix store diff-closures "$oldGenPath" "$newGenPath"
+    [[ -z "''${oldGenPath:-}" ]] || ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
   '';
 }
