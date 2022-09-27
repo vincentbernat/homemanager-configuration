@@ -181,6 +181,7 @@
     ];
 
   home.activation.diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
-    [[ -z "''${oldGenPath:-}" ]] || ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
+    [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
+       ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
   '';
 }
