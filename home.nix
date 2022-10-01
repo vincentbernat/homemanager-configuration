@@ -115,20 +115,15 @@
       };
       i3 = pkgs.i3-gaps.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
-          # focus output next|prev
-          (pkgs.fetchpatch {
-            url = "https://github.com/i3/i3/pull/4622.patch";
-            sha256 = "sha256-V/Pq5FtM+fM+pOqco48cB88r9/VZrM3daYnxkC8sfpE=";
-          })
           # Mouse wheel should focus windows too
           (pkgs.fetchpatch {
             url = "https://github.com/vincentbernat/i3/commit/1ba57fd0256f184648c3e10d2523df08b0cc6f5b.patch";
             sha256 = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
           })
-          # Tiling drag
+          # Respect maximum border style configuration set by user
           (pkgs.fetchpatch {
-            url = "https://github.com/i3/i3/pull/3085.patch";
-            sha256 = "sha256-Qa+rj0m4fPRSQAiV6JuvfrKXe4orZP9WXAnN6so16qs=";
+            url = "https://github.com/i3/i3/pull/5158.diff";
+            sha256 = "sha256-pFlHJrCNd/680GYzR75HVL7eperaJ8YwybPgplB8sB8=";
           })
         ];
       });
