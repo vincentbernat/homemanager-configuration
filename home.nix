@@ -150,6 +150,7 @@
       firefox
       thunderbird
       glibcLocales
+      jless
       mp4v2
       openssh
       yarn
