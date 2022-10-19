@@ -180,4 +180,6 @@
     [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
        ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
   '';
+
+  manual.manpages.enable = false;
 }
