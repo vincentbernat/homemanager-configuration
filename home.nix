@@ -61,10 +61,10 @@
       };
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "106.0b5";
+        version = "107.0b1";
         src = pkgs.fetchurl {
           url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
-          sha256 = "sha256-UDcquIEKQOew0DofVeOy5tV3hvItX0AGuExki5WZWBE=";
+          hash = "sha256-sJnic+HzzZmg2JkRekN2CtWM6DiwHKUHqqMq5BCM7Pk=";
         };
         genericName = "Mail Client";
         mimeTypes = [
@@ -93,7 +93,7 @@
           owner = "vincentbernat";
           repo = "xssproxy";
           rev = "v${version}";
-          sha256 = "sha256-BE/v1CJAwKwxlK3Xg3ezD+IXyT7ZFGz3bQzGxFQfEnU=";
+          hash = "sha256-BE/v1CJAwKwxlK3Xg3ezD+IXyT7ZFGz3bQzGxFQfEnU=";
         };
       });
       openssh = pkgs.openssh.overrideAttrs (old: {
@@ -102,7 +102,7 @@
           # Host in ssh -G
           (pkgs.fetchpatch {
             url = "https://bugzilla.mindrot.org/attachment.cgi?id=3547";
-            sha256 = "sha256-uF+pPRlO9UmavjqQox6RRGFKYrmxbqygXMr1Tx7J3mA=";
+            hash = "sha256-uF+pPRlO9UmavjqQox6RRGFKYrmxbqygXMr1Tx7J3mA=";
           })
         ];
       });
@@ -118,12 +118,12 @@
           # Mouse wheel should focus windows too
           (pkgs.fetchpatch {
             url = "https://github.com/vincentbernat/i3/commit/1ba57fd0256f184648c3e10d2523df08b0cc6f5b.patch";
-            sha256 = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
+            hash = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
           })
           # Respect maximum border style configuration set by user
           (pkgs.fetchpatch {
             url = "https://github.com/i3/i3/pull/5158.diff";
-            sha256 = "sha256-pFlHJrCNd/680GYzR75HVL7eperaJ8YwybPgplB8sB8=";
+            hash = "sha256-pFlHJrCNd/680GYzR75HVL7eperaJ8YwybPgplB8sB8=";
           })
         ];
       });
@@ -138,7 +138,7 @@
           repo = "polybar";
           rev = "6464e4670ac0"; # vbe/master
           fetchSubmodules = true;
-          sha256 = "sha256-lbl4VYOk7bVOuTt0JV9UbgmEFBx4IRHgz9eZM7ibw98=";
+          hash = "sha256-lbl4VYOk7bVOuTt0JV9UbgmEFBx4IRHgz9eZM7ibw98=";
         };
       });
     in
