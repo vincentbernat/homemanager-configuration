@@ -106,18 +106,9 @@
           })
         ];
       });
-      emacs = (pkgs.emacs.override {
+      emacs = pkgs.emacs.override {
         nativeComp = true;
-      }).overrideAttrs
-        (old: {
-          patches = (old.patches or [ ]) ++ [
-            (pkgs.fetchpatch {
-              url = "https://github.com/emacs-mirror/emacs/commit/0701634aa78.patch";
-              hash = "sha256-BUu8flAtbqmCuKFb58zketTOTobwZkYkdFXW656FTnk=";
-              revert = true;
-            })
-          ];
-        });
+      };
       glibcLocales = pkgs.glibcLocales.override {
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
