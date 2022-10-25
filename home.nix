@@ -61,10 +61,10 @@
       };
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "107.0b1";
+        version = "107.0b2";
         src = pkgs.fetchurl {
           url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
-          hash = "sha256-sJnic+HzzZmg2JkRekN2CtWM6DiwHKUHqqMq5BCM7Pk=";
+          hash = "sha256-NMNkhl7LOWk4P0GcDnfZy1kmGQVqntO/JJIEbq6OxoA=";
         };
         genericName = "Mail Client";
         mimeTypes = [
@@ -145,6 +145,7 @@
     with pkgs; [
       bat
       difftastic
+      docker
       dogdns
       emacs
       firefox
