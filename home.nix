@@ -161,6 +161,8 @@
       nix
       nix-zsh-completions
       nixpkgs-fmt
+      nix-direnv
+      direnv
     ] ++ [
       # i3-related
       dunst
