@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vbeterm = {
