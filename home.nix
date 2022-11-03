@@ -160,6 +160,7 @@
       jless
       mp4v2
       openssh
+      yaml-language-server
       yarn
       yt-dlp
       flakes.vbeterm.packages."${system}".default
