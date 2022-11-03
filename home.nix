@@ -159,6 +159,7 @@
       glibcLocales
       jless
       mp4v2
+      nodePackages.prettier
       openssh
       yaml-language-server
       yarn
