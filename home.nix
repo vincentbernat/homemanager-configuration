@@ -124,6 +124,14 @@
           })
         ];
       });
+      direnv = pkgs.direnv.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (pkgs.fetchpatch {
+            url = "https://github.com/direnv/direnv/pull/1010.patch";
+            hash = "sha256-702FM1GghJOxN5i+VnDdq91ATv78+lMiBC2lg1mh5z0=";
+          })
+        ];
+      });
       polybar = (pkgs.polybar.override {
         pulseSupport = true;
         i3-gaps = i3;
@@ -142,6 +150,7 @@
     with pkgs; [
       bat
       difftastic
+      direnv
       docker
       dogdns
       emacs
@@ -162,7 +171,6 @@
       nix-zsh-completions
       nixpkgs-fmt
       nix-direnv
-      direnv
     ] ++ [
       # i3-related
       dunst
