@@ -110,17 +110,18 @@
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
       };
-      i3 = pkgs.i3-gaps.overrideAttrs (old: {
+      i3 = pkgs.i3.overrideAttrs (old: {
+        src = pkgs.fetchFromGitHub {
+          owner = "i3";
+          repo = "i3";
+          rev = "d26ddcbfe5f0ead61cc55c1f596692d9a89e71f9";
+          hash = "sha256-2vH0v6ZkGxmu3o5/YII2+UQmOA3eDsrOkpOrPfsxLbI=";
+        };
         patches = (old.patches or [ ]) ++ [
           # Mouse wheel should focus windows too
           (pkgs.fetchpatch {
             url = "https://github.com/vincentbernat/i3/commit/1ba57fd0256f184648c3e10d2523df08b0cc6f5b.patch";
             hash = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
-          })
-          # Respect maximum border style configuration set by user
-          (pkgs.fetchpatch {
-            url = "https://github.com/i3/i3/pull/5158.diff";
-            hash = "sha256-pFlHJrCNd/680GYzR75HVL7eperaJ8YwybPgplB8sB8=";
           })
         ];
       });
