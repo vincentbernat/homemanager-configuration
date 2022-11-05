@@ -171,7 +171,7 @@
       # Nix-related
       nix
       nix-zsh-completions
-      nixfmt
+      nixpkgs-fmt
       nix-direnv
     ] ++ [
       # i3-related
