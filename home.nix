@@ -154,20 +154,25 @@
       direnv
       docker
       dogdns
-      emacs
       firefox
       thunderbird
       glibcLocales
       jless
       mp4v2
-      nodePackages.prettier
       openssh
-      yaml-language-server
       yarn
       yt-dlp
       flakes.vbeterm.packages."${system}".default
       # Cannot add:
       # - xsecurelock (uses PAM)
+    ] ++ [
+      # Emacs-related
+      emacs
+      nodePackages.prettier
+      nodePackages.eslint
+      nodePackages.typescript-language-server
+      nodePackages.vls
+      yaml-language-server
     ] ++ [
       # Nix-related
       nix
