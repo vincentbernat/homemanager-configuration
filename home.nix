@@ -114,8 +114,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "i3";
           repo = "i3";
-          rev = "e6a28b9475e90805806bbe5e4c3dcdcc28d49f4b";
-          hash = "sha256-SwxZxrxnd6mwNF4jdv/is5DzNsljHnAAQzUAaGkjVgY=";
+          rev = "96614a2f32ae5f0a8f39e49d98a4d2183a379516";
+          hash = "sha256-zd/PPmXR/PknWDwFWCktLtolo7UnUnG+v7GZ6NnQw/s=";
         };
         patches = (old.patches or [ ]) ++ [
           # Mouse wheel should focus windows too
