@@ -133,6 +133,15 @@
           })
         ];
       });
+      emacs = pkgs.symlinkJoin {
+        name = "emacs";
+        version = pkgs.emacs.version;
+        paths = [ pkgs.emacs ];
+        nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/emacs-* --set LSP_USE_PLISTS true
+        '';
+      };
       polybar = (pkgs.polybar.override {
         pulseSupport = true;
         i3-gaps = i3;
@@ -171,6 +180,7 @@
       nodePackages.prettier
       nodePackages.eslint
       nodePackages.typescript-language-server
+      nodePackages.typescript
       nodePackages.vls
       yaml-language-server
     ] ++ [
