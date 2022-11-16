@@ -171,6 +171,7 @@
       nodePackages.prettier
       nodePackages.eslint
       nodePackages.typescript-language-server
+      nodePackages.typescript
       yaml-language-server
     ] ++ [
       # Nix-related
