@@ -147,12 +147,6 @@
           hash = "sha256-lbl4VYOk7bVOuTt0JV9UbgmEFBx4IRHgz9eZM7ibw98=";
         };
       });
-      # After modifying package.json, one can update with:
-      #  nix run nixpkgs#node2nix -- -l package-lock.json --pkg-name nodejs
-      volar-language-server = (import ./pkgs/volar/default.nix {
-        inherit pkgs system;
-        nodejs = pkgs.nodejs;
-      }).package;
     in
     with pkgs; [
       bat
@@ -176,9 +170,6 @@
       emacs
       nodePackages.prettier
       nodePackages.eslint
-      nodePackages.typescript-language-server
-      nodePackages.typescript
-      volar-language-server
       yaml-language-server
     ] ++ [
       # Nix-related
