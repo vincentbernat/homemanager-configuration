@@ -179,6 +179,7 @@
       nodePackages.prettier
       nodePackages.eslint
       yaml-language-server
+      nil # (Nix LSP)
     ] ++ [
       # Nix-related
       nix
