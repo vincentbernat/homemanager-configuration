@@ -198,6 +198,7 @@
       i3
       polybar
       xssproxy
+      xdragon
     ] ++ [
       # Pipewire
       pipewire
