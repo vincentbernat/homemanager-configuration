@@ -134,9 +134,9 @@
         ];
       });
       polybar = (pkgs.polybar.override {
+        inherit i3;
+        i3Support = true;
         pulseSupport = true;
-        i3-gaps = i3;
-        i3GapsSupport = true;
       }).overrideAttrs (old: {
         version = "3.6.3";
         src = pkgs.fetchFromGitHub {
