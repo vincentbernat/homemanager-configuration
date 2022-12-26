@@ -23,6 +23,10 @@
           startupWMClass = desktopName;
           startupNotify = true;
         };
+        patchPhase = ''
+          # Don't download updates from Mozilla directly
+          echo 'pref("app.update.auto", "false");' >> defaults/pref/channel-prefs.js
+        '';
         installPhase = ''
           mkdir -p "$prefix/usr/lib/${which.pname}-bin-${which.version}"
           cp -r * "$prefix/usr/lib/${which.pname}-bin-${which.version}"
@@ -148,7 +152,7 @@
         };
       });
       emacs = pkgs.emacs.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [
+        patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
             # Fix detection of DPI change in builds without Xft
             url = "https://github.com/emacs-mirror/emacs/commit/52d4c98cec0901ef5cc1c55d5b3b33ac9d9c519f.patch";
