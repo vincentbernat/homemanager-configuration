@@ -24,8 +24,9 @@
           startupNotify = true;
         };
         patchPhase = ''
-          # Don't download updates from Mozilla directly
-          echo 'pref("app.update.auto", "false");' >> defaults/pref/channel-prefs.js
+          # Disable auto updates
+          mkdir -p distribution
+          echo '{"policies": {"AppAutoUpdate": false}}' >> distribution/policies.json
         '';
         installPhase = ''
           mkdir -p "$prefix/usr/lib/${which.pname}-bin-${which.version}"
