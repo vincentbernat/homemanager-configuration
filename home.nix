@@ -26,7 +26,7 @@
         patchPhase = ''
           # Disable auto updates
           mkdir -p distribution
-          echo '{"policies": {"AppAutoUpdate": false}}' >> distribution/policies.json
+          echo '{"policies": {"AppAutoUpdate": false, "ManualAppUpdateOnly": true}}' >> distribution/policies.json
         '';
         installPhase = ''
           mkdir -p "$prefix/usr/lib/${which.pname}-bin-${which.version}"
