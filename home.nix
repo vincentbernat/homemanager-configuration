@@ -130,14 +130,6 @@
           })
         ];
       });
-      direnv = pkgs.direnv.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (pkgs.fetchpatch {
-            url = "https://github.com/direnv/direnv/pull/1010.patch";
-            hash = "sha256-702FM1GghJOxN5i+VnDdq91ATv78+lMiBC2lg1mh5z0=";
-          })
-        ];
-      });
       polybar = (pkgs.polybar.override {
         inherit i3;
         i3Support = true;
@@ -151,6 +143,14 @@
           fetchSubmodules = true;
           hash = "sha256-lbl4VYOk7bVOuTt0JV9UbgmEFBx4IRHgz9eZM7ibw98=";
         };
+      });
+      direnv = pkgs.direnv.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (pkgs.fetchpatch {
+            url = "https://github.com/direnv/direnv/pull/1010.patch";
+            hash = "sha256-702FM1GghJOxN5i+VnDdq91ATv78+lMiBC2lg1mh5z0=";
+          })
+        ];
       });
       emacs = pkgs.emacs.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
