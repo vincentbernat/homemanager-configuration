@@ -116,12 +116,6 @@
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
       };
       i3 = pkgs.i3.overrideAttrs (old: {
-        src = pkgs.fetchFromGitHub {
-          owner = "i3";
-          repo = "i3";
-          rev = "4.22";
-          hash = "sha256-M4ShMsm3pAtIPSJ+DpeHjMZfevq1OGlP9rHvUk96GWI=";
-        };
         patches = (old.patches or [ ]) ++ [
           # Mouse wheel should focus windows too
           (pkgs.fetchpatch {
