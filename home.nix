@@ -166,7 +166,7 @@
       difftastic
       direnv
       docker
-      dogdns
+      doggo
       firefox
       thunderbird
       glibcLocales
