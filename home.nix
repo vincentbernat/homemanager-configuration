@@ -23,12 +23,11 @@
           startupWMClass = desktopName;
           startupNotify = true;
         };
-        patchPhase = ''
+        installPhase = ''
           # Disable auto updates
           mkdir -p distribution
           echo '{"policies": {"AppAutoUpdate": false, "ManualAppUpdateOnly": true}}' >> distribution/policies.json
-        '';
-        installPhase = ''
+
           mkdir -p "$prefix/usr/lib/${which.pname}-bin-${which.version}"
           cp -r * "$prefix/usr/lib/${which.pname}-bin-${which.version}"
 
