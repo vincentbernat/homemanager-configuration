@@ -100,16 +100,6 @@
           hash = "sha256-BE/v1CJAwKwxlK3Xg3ezD+IXyT7ZFGz3bQzGxFQfEnU=";
         };
       });
-      openssh = pkgs.openssh.overrideAttrs (old: {
-        checkTarget = [ ];
-        patches = (old.patches or [ ]) ++ [
-          # Host in ssh -G
-          (pkgs.fetchpatch {
-            url = "https://bugzilla.mindrot.org/attachment.cgi?id=3547";
-            hash = "sha256-uF+pPRlO9UmavjqQox6RRGFKYrmxbqygXMr1Tx7J3mA=";
-          })
-        ];
-      });
       glibcLocales = pkgs.glibcLocales.override {
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
@@ -178,7 +168,6 @@
       thunderbird
       glibcLocales
       jless
-      openssh
       tmux
       yarn
       yt-dlp
