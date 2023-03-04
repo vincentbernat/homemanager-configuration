@@ -157,6 +157,19 @@
           })
         ];
       });
+      ttyd = pkgs.ttyd.overrideAttrs (old: {
+        # Use Iosevka
+        postPatch = ''
+          cat <<EOF >> html/src/style/index.scss
+          @font-face {
+            font-family: 'Iosevka';
+            src: url(data:font/ttf;base64,$(base64 -w0 ${pkgs.iosevka}/share/fonts/truetype/iosevka-regular.ttf))
+                 format('truetype');
+          }
+          EOF
+          sed -i s/Consolas,/Iosevka,Consolas,/ html/src/components/app.tsx
+        '';
+      });
     in
     with pkgs; [
       bat
@@ -169,6 +182,7 @@
       glibcLocales
       jless
       tmux
+      ttyd
       yarn
       yt-dlp
       flakes.vbeterm.packages."${system}".default
