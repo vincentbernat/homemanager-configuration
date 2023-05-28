@@ -171,7 +171,7 @@
       tmux
       yarn
       yt-dlp
-      flakes.vbeterm.packages."${system}".default
+      flakes.vbeterm.packages.${system}.default
       # Cannot add:
       # - xsecurelock (uses PAM)
     ] ++ [
