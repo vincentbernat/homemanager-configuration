@@ -65,10 +65,10 @@
       };
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
-        version = "115.0b5";
+        version = "115.0b6";
         src = pkgs.fetchurl {
           url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
-          hash = "sha256-faKBTsLafIMDKXw2CameErjUFrY90hG7ue1rjFSG9ns=";
+          hash = "sha256-17N5QShkunZbZm/P4+blXass3WnSZQs4JF/qburxxK4=";
         };
         genericName = "Mail Client";
         mimeTypes = [
