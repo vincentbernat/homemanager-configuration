@@ -201,8 +201,14 @@
       wireplumber
     ];
 
-  home.activation.diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
-    [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
-       ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
-  '';
+  home.activation = {
+    diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
+      [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
+         ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
+    '';
+    emacs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      [[ "$(readlink -f "$oldGenPath"/home-path/bin/emacs)" = "$(readlink -f "$newGenPath"/home-path/bin/emacs)" ]] || \
+        $DRY_RUN_CMD env EMACS="$newGenPath"/bin/home-path/emacs doom build
+    '';
+  };
 }
