@@ -204,7 +204,7 @@
     '';
     emacs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       [[ "$(readlink -f "$oldGenPath"/home-path/bin/emacs)" = "$(readlink -f "$newGenPath"/home-path/bin/emacs)" ]] || \
-        $DRY_RUN_CMD env EMACS="$newGenPath"/bin/home-path/emacs doom build
+        $DRY_RUN_CMD env EMACS="$newGenPath"/home-path/bin/emacs doom build
     '';
   };
 }
