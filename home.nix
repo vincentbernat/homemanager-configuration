@@ -131,7 +131,7 @@
           })
         ];
       });
-      emacs = pkgs.emacs.overrideAttrs (old: {
+      emacs = pkgs.emacs28.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
             # Fix detection of DPI change in builds without Xft
