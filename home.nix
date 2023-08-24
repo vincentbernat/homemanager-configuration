@@ -131,20 +131,7 @@
           })
         ];
       });
-      emacs = pkgs.emacs28.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (pkgs.fetchpatch {
-            # Fix detection of DPI change in builds without Xft
-            url = "https://github.com/emacs-mirror/emacs/commit/52d4c98cec0901ef5cc1c55d5b3b33ac9d9c519f.patch";
-            hash = "sha256-KkpFgibyZmrrl9iggI8AsaieLx7hVsZtXE1BZNG6zeA=";
-          })
-          (pkgs.fetchpatch {
-            # Allow NUL in JSON input
-            url = "https://github.com/emacs-mirror/emacs/commit/8b52d9f5f177ce76b9ebecadd70c6dbbf07a20c6.patch";
-            hash = "sha256-/W9yateE9UZ9a8CUjavQw0X7TgxigYzBuOvtAXdEsSA=";
-          })
-        ];
-      });
+      emacs = pkgs.emacs29;
       tmux = pkgs.tmux.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
