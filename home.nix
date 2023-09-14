@@ -131,7 +131,7 @@
           })
         ];
       });
-      emacs = pkgs.emacs29;
+      emacs = pkgs.emacs29-gtk3;
       tmux = pkgs.tmux.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
