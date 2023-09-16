@@ -131,7 +131,6 @@
           })
         ];
       });
-      emacs = pkgs.emacs29-gtk3;
       tmux = pkgs.tmux.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
@@ -159,7 +158,6 @@
       # - xsecurelock (uses PAM)
     ] ++ [
       # Emacs-related
-      emacs
       nodePackages.prettier
       nodePackages.eslint
       yaml-language-server
@@ -188,10 +186,6 @@
     diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
       [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
          ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
-    '';
-    emacs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      [[ "$(readlink -f "$oldGenPath"/home-path/bin/emacs)" = "$(readlink -f "$newGenPath"/home-path/bin/emacs)" ]] || \
-        $DRY_RUN_CMD env EMACS="$newGenPath"/home-path/bin/emacs doom build
     '';
   };
 }
