@@ -178,7 +178,6 @@
     ] ++ [
       # Pipewire
       pipewire
-      pipewire.pulse
       wireplumber
     ];
 
