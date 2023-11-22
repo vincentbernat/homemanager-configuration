@@ -186,10 +186,16 @@
       [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
          ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
     '';
-    browserpass = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
-        ${pkgs.browserpass}/lib/mozilla/native-messaging-hosts/com.github.browserpass.native.json \
-        ~/.mozilla/native-messaging-hosts/.
-    '';
+    browserpass =
+      let
+        browserpass = pkgs.browserpass.override {
+          gnupg = null;
+        };
+      in
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
+          ${browserpass}/lib/mozilla/native-messaging-hosts/com.github.browserpass.native.json \
+          ~/.mozilla/native-messaging-hosts/.
+      '';
   };
 }
