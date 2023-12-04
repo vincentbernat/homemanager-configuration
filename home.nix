@@ -127,7 +127,7 @@
         patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
             url = "https://github.com/direnv/direnv/pull/1010.patch";
-            hash = "sha256-702FM1GghJOxN5i+VnDdq91ATv78+lMiBC2lg1mh5z0=";
+            hash = "sha256-UFugO+U/+bdkyL01KFBWuN4KQUWBjN4eVbpc1DW0iFI=";
           })
         ];
       });
