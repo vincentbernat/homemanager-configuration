@@ -161,7 +161,6 @@
       nodePackages.prettier
       nodePackages.eslint
       yaml-language-server
-      beancount-language-server
       nil # (Nix LSP)
     ] ++ [
       # Nix-related
