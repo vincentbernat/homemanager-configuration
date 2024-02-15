@@ -131,14 +131,6 @@
           })
         ];
       });
-      tmux = pkgs.tmux.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (pkgs.fetchpatch {
-            url = "https://github.com/tmux/tmux/pull/3319.patch";
-            hash = "sha256-Nq5Oe0vL4wM8aC8O086JgIl+Zamfb4MByUm8JUef11Y=";
-          })
-        ];
-      });
     in
     with pkgs; [
       bat
