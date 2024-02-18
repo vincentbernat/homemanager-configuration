@@ -87,15 +87,6 @@
           rm -rf omni
         '';
       });
-      xssproxy = pkgs.xssproxy.overrideAttrs (old: rec {
-        version = "1.1.0";
-        src = pkgs.fetchFromGitHub {
-          owner = "vincentbernat";
-          repo = "xssproxy";
-          rev = "v${version}";
-          hash = "sha256-BE/v1CJAwKwxlK3Xg3ezD+IXyT7ZFGz3bQzGxFQfEnU=";
-        };
-      });
       glibcLocales = pkgs.glibcLocales.override {
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
