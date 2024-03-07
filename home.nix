@@ -122,6 +122,14 @@
           })
         ];
       });
+      tmux = pkgs.tmux.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (pkgs.fetchpatch {
+            url = "https://github.com/tmux/tmux/files/14516703/fe0f.diff.txt";
+            hash = "sha256-RS9p4exWCje9E5XxePXj8RYa36nKtGniC6sPirAzdko=";
+          })
+        ];
+      });
     in
     with pkgs; [
       bat
