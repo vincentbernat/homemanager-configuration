@@ -142,7 +142,6 @@
       glibcLocales
       jless
       tmux
-      yarn
       yt-dlp
       flakes.vbeterm.packages.${system}.default
       # Cannot add:
