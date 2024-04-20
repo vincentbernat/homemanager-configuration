@@ -147,7 +147,6 @@
       firefox
       thunderbird
       glibcLocales
-      jless
       tmux
       yt-dlp
       flakes.vbeterm.packages.${system}.default
