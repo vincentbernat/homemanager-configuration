@@ -172,6 +172,11 @@
       polybar
       xssproxy
       xdragon
+    ] ++ [
+      # Pipewire
+      pipewire
+      wireplumber
+      pavucontrol
     ];
 
   home.activation = {
