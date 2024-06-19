@@ -176,6 +176,7 @@
       # Pipewire
       pipewire
       wireplumber
+      pavucontrol
     ];
 
   home.activation = {
