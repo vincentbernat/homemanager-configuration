@@ -1,0 +1,39 @@
+From 1ba57fd0256f184648c3e10d2523df08b0cc6f5b Mon Sep 17 00:00:00 2001
+From: Vincent Bernat <vincent@bernat.ch>
+Date: Sun, 30 Jan 2022 23:01:35 +0100
+Subject: [PATCH] bindings: also include buttons 4 and 5 for buttons to always
+ grab
+
+---
+ src/bindings.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/bindings.c b/src/bindings.c
+index 0aa960d315..fe7a63b99e 100644
+--- a/src/bindings.c
++++ b/src/bindings.c
+@@ -995,7 +995,7 @@ bool load_keymap(void) {
+ 
+ /*
+  * Returns a list of buttons that should be grabbed on a window.
+- * This list will always contain 1–3, all higher buttons will only be returned
++ * This list will always contain 1–5, 8, 9, all higher buttons will only be returned
+  * if there is a whole-window binding for it on some window in the current
+  * config.
+  * The list is terminated by a 0.
+@@ -1008,10 +1008,14 @@ int *bindings_get_buttons_to_grab(void) {
+     int buffer[num_max];
+     int num = 0;
+ 
+-    /* We always return buttons 1 through 3. */
++    /* We always return buttons 1 through 5, and 8 and 9. */
+     buffer[num++] = 1;
+     buffer[num++] = 2;
+     buffer[num++] = 3;
++    buffer[num++] = 4;
++    buffer[num++] = 5;
++    buffer[num++] = 8;
++    buffer[num++] = 9;
+ 
+     Binding *bind;
+     TAILQ_FOREACH (bind, bindings, bindings) {

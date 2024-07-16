@@ -94,10 +94,7 @@
       i3 = pkgs.i3.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           # Mouse wheel should focus windows too
-          (pkgs.fetchpatch {
-            url = "https://github.com/vincentbernat/i3/commit/1ba57fd0256f184648c3e10d2523df08b0cc6f5b.patch";
-            hash = "sha256-QTEX3Wza3QG+rVqVeaKJCKizTx9VNLNBy51K91xDkB8=";
-          })
+          ./patches/i3-more-mouse-buttons.patch
         ];
       });
       polybar = (pkgs.polybar.override {
