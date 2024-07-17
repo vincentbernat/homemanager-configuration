@@ -134,6 +134,17 @@
           })
         ];
       });
+      wireplumber = pkgs.wireplumber.overrideAttrs (old: rec {
+        # Older version
+        version = "0.5.4";
+        src = pkgs.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "pipewire";
+          repo = "wireplumber";
+          rev = version;
+          hash = "sha256-freVyWCqSUQCq7NZRqVWMiXbSxqZEjgZC96DjcOOhrg=";
+        };
+      });
     in
     with pkgs; [
       bat
