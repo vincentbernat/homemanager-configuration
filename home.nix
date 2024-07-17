@@ -135,7 +135,7 @@
         ];
       });
       wireplumber = pkgs.wireplumber.overrideAttrs (old: rec {
-        # Older version
+        # Older version. Maybe use nixhub.io instead?
         version = "0.5.4";
         src = pkgs.fetchFromGitLab {
           domain = "gitlab.freedesktop.org";
