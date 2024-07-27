@@ -146,17 +146,7 @@
         };
         mesonFlags = builtins.filter (flag: flag != (lib.mesonEnable "snap" false)) old.mesonFlags;
       });
-      wireplumber = (pkgs.wireplumber.override { inherit pipewire; }).overrideAttrs (old: rec {
-        # Older version. Maybe use nixhub.io instead?
-        version = "0.5.4";
-        src = pkgs.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "pipewire";
-          repo = "wireplumber";
-          rev = version;
-          hash = "sha256-freVyWCqSUQCq7NZRqVWMiXbSxqZEjgZC96DjcOOhrg=";
-        };
-      });
+      wireplumber = pkgs.wireplumber.override { inherit pipewire; };
     in
     with pkgs; [
       bat
