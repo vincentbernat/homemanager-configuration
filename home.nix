@@ -135,7 +135,8 @@
         ];
       });
       pipewire = pkgs.pipewire.overrideAttrs (old: rec {
-        # Older version
+        # Older version. Crash in relation with bluetooth:
+        # See: https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/4155
         version = "1.0.7";
         src = pkgs.fetchFromGitLab {
           domain = "gitlab.freedesktop.org";
