@@ -169,7 +169,7 @@
       nodePackages.eslint
       yaml-language-server
       beancount-language-server
-      nil # (Nix LSP)
+      nixd # (Nix LSP)
     ] ++ [
       # Nix-related
       nix
