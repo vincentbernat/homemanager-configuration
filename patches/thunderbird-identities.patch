@@ -1,5 +1,5 @@
---- ./omni/modules/MailUtils.sys.mjs	2022-08-23 03:45:28.000000000 +0200
-+++ ./omni/modules/MailUtils.sys.mjs	2022-08-23 16:28:26.192547963 +0200
+--- ./omni/modules/MailUtils.jsm	2022-08-23 03:45:28.000000000 +0200
++++ ./omni/modules/MailUtils.jsm	2022-08-23 16:28:26.192547963 +0200
 @@ -474,32 +474,28 @@
          optionalHint
        );
