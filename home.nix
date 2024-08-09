@@ -65,7 +65,11 @@
       };
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
-        inherit (pkgs.thunderbird-bin-unwrapped) version src;
+        version = "128.1.0esr";
+        src = pkgs.fetchurl {
+          url = "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${version}/linux-x86_64/en-US/thunderbird-${version}.tar.bz2";
+          hash = "sha512-8YSdauMGmAwr7DECAHFRrx28piVIn8Kcfyw5fReO/0oGR3BxBihfHPe0mNT/ZmLc4JfR+71Y2k/dvNl5AvFSRA==";
+        };
         genericName = "Mail Client";
         mimeTypes = [
           "message/rfc822"
