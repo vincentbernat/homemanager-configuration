@@ -134,20 +134,6 @@
           })
         ];
       });
-      pipewire = pkgs.pipewire.overrideAttrs (old: rec {
-        # Older version. Crash in relation with bluetooth:
-        # See: https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/4155
-        version = "1.0.7";
-        src = pkgs.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "pipewire";
-          repo = "pipewire";
-          rev = version;
-          sha256 = "sha256-YzI+hkX1ZdeTfxuKaw5P9OYPtkWtUg9cNo32wLCgjNU=";
-        };
-        mesonFlags = builtins.filter (flag: flag != (lib.mesonEnable "snap" false)) old.mesonFlags;
-      });
-      wireplumber = pkgs.wireplumber.override { inherit pipewire; };
     in
     with pkgs; [
       bat
