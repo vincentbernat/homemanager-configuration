@@ -135,13 +135,21 @@
         ];
       });
       less = pkgs.less.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (pkgs.fetchpatch {
-            url = "https://github.com/gwsw/less/commit/994786e4148efbadc89a15138b1dfcf3881166ea.patch";
-            hash = "sha256-ZcJtl/XXW4j8X7VnTHekCgdfiJEHarVFrybFKKNBjNo=";
-            excludes = [ "less.nro.VER" "NEWS" "version.c" ];
-          })
-        ];
+        src = pkgs.fetchFromGitHub {
+          owner = "gwsw";
+          repo = "less";
+          rev = "994786e4148efbadc89a15138b1dfcf3881166ea";
+          hash = "sha256-EF9pBIsHDpc7HKCjF8SAis0iAZ7K0m4S9vTfYtTdOC8=";
+        };
+        preConfigure = (old.preConfigure or "") + ''
+          patchShebangs ./mkhelp.pl
+          make -f Makefile.aut distfiles
+        '';
+        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ (with pkgs; [
+          perl
+          autoreconfHook
+          groff
+        ]);
       });
     in
     with pkgs; [
