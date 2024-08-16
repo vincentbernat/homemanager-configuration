@@ -137,9 +137,9 @@
       less = pkgs.less.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           (pkgs.fetchpatch {
-            url = "https://github.com/gwsw/less/commit/1d36fbd0ab607ea7f09ceef8fa6a2da618876b29.patch";
-            hash = "sha256-px9wBz2JL9Q16BPYbbDdANU1YVFTC62yAwVKXqy+glw=";
-            excludes = [ "less.nro.VER" ];
+            url = "https://github.com/gwsw/less/commit/994786e4148efbadc89a15138b1dfcf3881166ea.patch";
+            hash = "sha256-ZcJtl/XXW4j8X7VnTHekCgdfiJEHarVFrybFKKNBjNo=";
+            excludes = [ "less.nro.VER" "NEWS" "version.c" ];
           })
         ];
       });
