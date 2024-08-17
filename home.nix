@@ -134,12 +134,22 @@
           })
         ];
       });
-      less = pkgs.less.overrideAttrs (old: rec {
-        version = "663";
-        src = pkgs.fetchurl {
-          url = "https://www.greenwoodsoftware.com/less/less-${version}-beta.tar.gz";
-          hash = "sha256-ZQqAwYIaKFup//dPzq4zI7BxM9zpUKSU9FEhH68q1eA=";
+      less = pkgs.less.overrideAttrs (old: {
+        src = pkgs.fetchFromGitHub {
+          owner = "gwsw";
+          repo = "less";
+          rev = "56fb53f2e15ad5fe58577b9fc7b99de0e3b33318";
+          hash = "sha256-ry+7xNljNK7r1cZXLQf/8hY7QYMz2tWpu0H42CzJ0BQ=";
         };
+        preConfigure = (old.preConfigure or "") + ''
+          patchShebangs ./mkhelp.pl
+          make -f Makefile.aut distfiles
+        '';
+        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ (with pkgs; [
+          perl
+          autoreconfHook
+          groff
+        ]);
       });
     in
     with pkgs; [
