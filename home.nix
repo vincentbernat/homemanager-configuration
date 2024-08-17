@@ -138,8 +138,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "gwsw";
           repo = "less";
-          rev = "994786e4148efbadc89a15138b1dfcf3881166ea";
-          hash = "sha256-EF9pBIsHDpc7HKCjF8SAis0iAZ7K0m4S9vTfYtTdOC8=";
+          rev = "56fb53f2e15ad5fe58577b9fc7b99de0e3b33318";
+          hash = "sha256-ry+7xNljNK7r1cZXLQf/8hY7QYMz2tWpu0H42CzJ0BQ=";
         };
         preConfigure = (old.preConfigure or "") + ''
           patchShebangs ./mkhelp.pl
