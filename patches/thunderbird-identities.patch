@@ -1,6 +1,6 @@
 --- ./omni/modules/MailUtils.sys.mjs	2022-08-23 03:45:28.000000000 +0200
 +++ ./omni/modules/MailUtils.sys.mjs	2022-08-23 16:28:26.192547963 +0200
-@@ -614,33 +614,29 @@
+@@ -614,32 +614,28 @@
        const hints =
          lazy.MailServices.headerParser.makeFromDisplayAddress(optionalHint);
  
@@ -32,16 +32,15 @@
            }
          }
        }
-     }
 +
-+    // Check against the email addresses of each identity.
-+    for (const hint of hints) {
-+      for (const identity of identities.filter(i => i.email)) {
-+        if (hint.email.toLowerCase() == identity.email.toLowerCase()) {
-+          return [identity, hint];
++      // Check against the email addresses of each identity.
++      for (const hint of hints) {
++        for (const identity of identities.filter(i => i.email)) {
++          if (hint.email.toLowerCase() == identity.email.toLowerCase()) {
++            return [identity, hint];
++          }
 +        }
 +      }
-+    }
+     }
  
      // Still no matches? Give up and pick the default or the first one.
-     if (useDefault) {
