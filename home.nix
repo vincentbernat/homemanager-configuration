@@ -174,7 +174,7 @@
     ] ++ [
       # Emacs-related
       nodePackages.prettier
-      nodePackages.eslint
+      eslint
       yaml-language-server
       beancount-language-server
       nixd # (Nix LSP)
