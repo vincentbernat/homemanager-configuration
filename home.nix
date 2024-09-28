@@ -123,21 +123,6 @@
           })
         ];
       });
-      tmux = pkgs.tmux.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          # Issue with some emojis
-          (pkgs.fetchpatch {
-            url = "https://github.com/tmux/tmux/files/14516703/fe0f.diff.txt";
-            hash = "sha256-RS9p4exWCje9E5XxePXj8RYa36nKtGniC6sPirAzdko=";
-          })
-          # Search broken, seehttps://github.com/tmux/tmux/issues/3864
-          (pkgs.fetchpatch {
-            url = "https://github.com/tmux/tmux/commit/43e5e80343185e69a1b864fc48095ede0b898180.patch";
-            hash = "sha256-GfjmDk9SmoEysBvz6gr9tTmD8MHKgIVASV9BvBVKQBM=";
-            revert = true;
-          })
-        ];
-      });
       less = pkgs.less.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "gwsw";
