@@ -51,7 +51,11 @@
       };
       firefox = firefox-or-thunderbird rec {
         pname = "firefox";
-        inherit (pkgs.firefox-bin-unwrapped) version src;
+        version = "131.0.2";
+        src = pkgs.fetchurl {
+          url = "http://archive.mozilla.org/pub/firefox/releases/${version}/linux-x86_64/en-US/firefox-${version}.tar.bz2";
+          sha256 = "e4dfdafd8b82e5d958a78935f55a9b882c9b7da6ce985cb3d3d779e66cb17311";
+        };
         genericName = "Web Browser";
         mimeTypes = [
           "text/html"
