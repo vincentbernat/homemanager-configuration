@@ -110,6 +110,9 @@
           fetchSubmodules = true;
           hash = "sha256-lbl4VYOk7bVOuTt0JV9UbgmEFBx4IRHgz9eZM7ibw98=";
         };
+        patches = (old.patches or [ ]) ++ [
+          ./patches/polybar-i3sock.patch
+        ];
       });
       direnv = pkgs.direnv.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
