@@ -147,44 +147,9 @@
           groff
         ]);
       });
-      caddy =
-        let
-          plugins = [{ module = "github.com/caddy-dns/powerdns"; version = "1.0.1"; }];
-        in
-        pkgs.caddy.overrideAttrs (old: {
-          vendorHash = "sha256-SOmuWosm29m2JtCTE2yIb/d2MQ7meJG859C+4cMalzM=";
-          proxyVendor = true;
-          # prePatch is executed twice: once to build the vendor directory and
-          # go.sum is updated and once for the final build where go.sum is not
-          # updated. So, we put it as part of the goModules derivation and
-          # retrieve it.
-          prePatch =
-            let
-              imports = lib.concatMapStrings (plugin: "       _ \"${plugin.module}\"\\\n") plugins;
-              requires = lib.concatMapStrings (plugin: "    ${plugin.module} v${plugin.version}") plugins;
-            in
-            ''
-              # Add plugins to main.go
-              sed -i '/plug in Caddy modules here/a\
-              ${imports}' cmd/caddy/main.go
-
-              # Add plugins to go.mod
-              sed -i '/require (/a\
-              ${requires}' go.mod
-
-              [ -z "''${goModules}" ] || \
-                cp "''${goModules}/go.mod" "''${goModules}/go.sum" .
-              grep caddy-dns go.*
-            '';
-          modPostBuild = ''
-            go mod tidy
-            cp go.mod go.sum "''${GOPATH}/pkg/mod/cache/download/."
-          '';
-        });
     in
     with pkgs; [
       bat
-      caddy
       difftastic
       direnv
       docker
