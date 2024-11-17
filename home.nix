@@ -122,14 +122,6 @@
           })
         ];
       });
-      pipewire = pkgs.pipewire.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (pkgs.fetchpatch {
-            url = "https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/2149.patch";
-            hash = "sha256-bwHaDBFdNFb/42/PrUavrsMxirNBT1PUcdJHYPoXSxo=";
-          })
-        ];
-      });
       less = pkgs.less.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "gwsw";
