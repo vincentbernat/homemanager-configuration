@@ -106,9 +106,9 @@
         src = pkgs.fetchFromGitHub {
           owner = "vincentbernat";
           repo = "polybar";
-          rev = "6464e4670ac0"; # vbe/master
+          rev = "1de459ea09cd"; # vbe/master
           fetchSubmodules = true;
-          hash = "sha256-lbl4VYOk7bVOuTt0JV9UbgmEFBx4IRHgz9eZM7ibw98=";
+          hash = "sha256-RVLOKaLPQxWeyuIDGiNUTTOC8u6z66a0R/h8I9xPruw=";
         };
         patches = (old.patches or [ ]) ++ [
           ./patches/polybar-i3sock.patch
