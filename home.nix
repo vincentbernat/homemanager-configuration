@@ -49,7 +49,7 @@
           install -D -t $out/share/applications $desktopItem/share/applications/*
         '';
       };
-      firefox = firefox-or-thunderbird rec {
+      firefox = (firefox-or-thunderbird rec {
         pname = "firefox";
         inherit (pkgs.firefox-bin-unwrapped) version src;
         genericName = "Web Browser";
@@ -62,7 +62,20 @@
           "x-scheme-handler/https"
           "x-scheme-handler/ftp"
         ];
-      };
+      }).overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          ./patches/firefox-reserved-keys.patch
+        ];
+        prePatch = ''
+          ${pkgs.unzip}/bin/unzip -d omni browser/omni.ja || true
+        '';
+        postPatch = ''
+          cd omni
+          ${pkgs.zip}/bin/zip -0DXqr ../browser/omni.ja *
+          cd ..
+          rm -rf omni
+        '';
+      });
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
         inherit (pkgs.thunderbird-bin-unwrapped) version src;
