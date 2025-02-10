@@ -91,6 +91,10 @@
         allLocales = false;
         locales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" "C.UTF-8/UTF-8" ];
       };
+      eslint = pkgs.eslint.overrideAttrs (old: {
+        # See https://github.com/NixOS/nixpkgs/issues/380266
+        dontCheckForBrokenSymlinks = true;
+      });
       i3 = pkgs.i3.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           # Mouse wheel should focus windows too
