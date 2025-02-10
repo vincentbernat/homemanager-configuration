@@ -150,6 +150,7 @@
       thunderbird
       glibcLocales
       less
+      mergiraf
       tmux
       yt-dlp
       flakes.vbeterm.packages.${system}.default
@@ -180,6 +181,7 @@
       pipewire
       wireplumber
       pavucontrol
+      easyeffects
     ];
 
   home.activation = {
