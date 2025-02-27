@@ -144,6 +144,7 @@
       bat
       difftastic
       direnv
+      docker
       doggo
       firefox
       thunderbird
