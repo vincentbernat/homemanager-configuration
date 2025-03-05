@@ -163,6 +163,7 @@
       yaml-language-server
       beancount-language-server
       nixd # (Nix LSP)
+      gopls # (too old in Debian)
     ] ++ [
       # Nix-related
       nix
