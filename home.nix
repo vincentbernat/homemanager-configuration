@@ -163,7 +163,7 @@
       yaml-language-server
       beancount-language-server
       nixd # (Nix LSP)
-      gopls # (too old in Debian)
+      (gopls.override { buildGoModule = pkgs.buildGo124Module; })
     ] ++ [
       # Nix-related
       nix
