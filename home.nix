@@ -152,6 +152,7 @@
       less
       mergiraf
       tmux
+      uv
       yt-dlp
       flakes.vbeterm.packages.${system}.default
       # Cannot add:
