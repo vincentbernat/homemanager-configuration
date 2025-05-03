@@ -65,7 +65,7 @@
       };
       thunderbird = (firefox-or-thunderbird rec {
         pname = "thunderbird";
-        inherit (pkgs.thunderbird-bin-unwrapped) version src;
+        inherit (pkgs.thunderbird-esr-bin-unwrapped) version src;
         genericName = "Mail Client";
         mimeTypes = [
           "message/rfc822"
