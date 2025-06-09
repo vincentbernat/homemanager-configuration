@@ -12,9 +12,16 @@
     };
   };
 
-  outputs = inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config = {
+          allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+            "claude-code"
+          ];
+        };
+      };
     in
     {
       homeConfigurations.bernat = inputs.home-manager.lib.homeManagerConfiguration {

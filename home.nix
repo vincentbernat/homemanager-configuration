@@ -151,6 +151,7 @@
       in
       with pkgs; [
         bat
+        claude-code
         difftastic
         direnv
         docker
