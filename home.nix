@@ -135,6 +135,7 @@
       with pkgs; [
         bat
         claude-code
+        gemini-cli
         difftastic
         direnv
         docker
