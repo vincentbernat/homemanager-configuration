@@ -138,7 +138,7 @@
         gemini-cli
         difftastic
         direnv
-        docker
+        docker-client
         doggo
         firefox
         thunderbird
