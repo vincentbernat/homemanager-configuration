@@ -134,8 +134,6 @@
       in
       with pkgs; [
         bat
-        claude-code
-        gemini-cli
         difftastic
         direnv
         docker-client
@@ -151,6 +149,11 @@
         flakes.vbeterm.packages.${system}.default
         # Cannot add:
         # - xsecurelock (uses PAM)
+      ] ++ [
+        # IA stuff
+        claude-code
+        gemini-cli
+        opencode
       ] ++ [
         # Emacs-related
         nodePackages.prettier
