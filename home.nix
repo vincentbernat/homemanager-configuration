@@ -123,6 +123,12 @@
             })
           ];
         });
+        opencode = pkgs.opencode.overrideAttrs
+          (old: {
+            patches = (old.patches or [ ]) ++ [
+              ./patches/opencode-qwen.patch
+            ];
+          });
         xssproxy = pkgs.xssproxy.overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             (pkgs.fetchpatch {
