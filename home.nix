@@ -141,7 +141,6 @@
         firefox
         thunderbird
         glibcLocales
-        go_latest
         less
         mergiraf
         tmux
