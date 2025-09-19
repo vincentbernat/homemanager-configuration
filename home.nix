@@ -123,14 +123,6 @@
             })
           ];
         });
-        xssproxy = pkgs.xssproxy.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [
-            (pkgs.fetchpatch {
-              url = "https://github.com/vincentbernat/xssproxy/commit/e14230eef9e3.patch";
-              hash = "sha256-d9QUQnUXMs0xMMiaS4gOs26NWL5YguLW3YMsLqUn+aE=";
-            })
-          ];
-        });
       in
       with pkgs; [
         bat
