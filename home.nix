@@ -152,6 +152,8 @@
         eslint
         yaml-language-server
         beancount-language-server
+        typescript-language-server
+        vue-language-server
         nixd # (Nix LSP)
         gopls
       ] ++ [
