@@ -113,6 +113,7 @@
           };
           patches = (old.patches or [ ]) ++ [
             ./patches/polybar-i3sock.patch
+            ./patches/i3ipcpp-cmake.patch
           ];
         });
         direnv = pkgs.direnv.overrideAttrs (old: {

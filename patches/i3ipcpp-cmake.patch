@@ -1,0 +1,22 @@
+From 36b2a1b05083837abe259b1990d738feaf4fa866 Mon Sep 17 00:00:00 2001
+From: patrick96 <p.ziegler96@gmail.com>
+Date: Sun, 22 Oct 2023 13:53:35 +0200
+Subject: [PATCH] Bump minimum cmake version to 3.5
+
+Versions before 3.5 are starting to get warning messages
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8d9d0bb..7db9e17 100644
+--- a/lib/i3ipcpp/CMakeLists.txt
++++ b/lib/i3ipcpp/CMakeLists.txt
+@@ -1,6 +1,6 @@
+ # Project setup
+ 
+-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.5.0 FATAL_ERROR)
+ project(i3ipc++ CXX)
+ 
+ option(WITH_LOGGING "Build with log support" OFF)
