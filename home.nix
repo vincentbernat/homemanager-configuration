@@ -165,11 +165,11 @@
         nix-direnv
       ] ++ [
         # i3-related
+        dragon-drop
         dunst
         i3
         polybar
         xssproxy
-        xdragon
       ] ++ [
         # Pipewire
         pipewire
