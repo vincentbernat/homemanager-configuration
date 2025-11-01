@@ -169,7 +169,6 @@
         dunst
         i3
         polybar
-        rofi
         xssproxy
       ] ++ [
         # Pipewire
