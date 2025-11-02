@@ -209,7 +209,7 @@
           '';
       in
       {
-        ".config/doom/tree-sitter".source = tree-sitter-languages;
+        ".config/doom/tree-sitter~".source = tree-sitter-languages;
       };
 
     activation = {
