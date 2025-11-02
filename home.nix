@@ -178,6 +178,40 @@
         easyeffects
       ];
 
+    file =
+      let
+        tree-sitter-languages =
+          let
+            langs = [
+              "c"
+              "clojure"
+              "cpp"
+              "css"
+              "dockerfile"
+              "go"
+              "java"
+              "javascript"
+              "lua"
+              "nix"
+              "python"
+              "rust"
+              "typescript"
+              "vue"
+              "yaml"
+              "yang"
+            ];
+          in
+          pkgs.runCommand "tree-sitter-languages" { } ''
+            mkdir -p $out
+            ${lib.concatMapStringsSep "\n" (lang: ''
+              cp ${pkgs.tree-sitter-grammars."tree-sitter-${lang}"}/parser $out/libtree-sitter-${lang}.so
+            '') langs}
+          '';
+      in
+      {
+        ".config/doom/tree-sitter".source = tree-sitter-languages;
+      };
+
     activation = {
       diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
         [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
