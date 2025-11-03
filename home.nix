@@ -189,6 +189,8 @@
               "css"
               "dockerfile"
               "go"
+              "gomod"
+              "gowork"
               "java"
               "javascript"
               "lua"
