@@ -133,6 +133,7 @@
         doggo
         firefox
         thunderbird
+        gh
         glibcLocales
         less
         mergiraf
