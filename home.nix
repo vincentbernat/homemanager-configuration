@@ -194,6 +194,7 @@
               "gowork"
               "java"
               "javascript"
+              "jsdoc"
               "lua"
               "nix"
               "python"
