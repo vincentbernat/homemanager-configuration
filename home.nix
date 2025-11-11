@@ -195,6 +195,7 @@
               "java"
               "javascript"
               "jsdoc"
+              "json"
               "lua"
               "nix"
               "python"
