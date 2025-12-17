@@ -157,7 +157,8 @@
         typescript-language-server
         vue-language-server
         nixd # (Nix LSP)
-        gopls
+        gopls # (Go LSP)
+        ruff # (Python linter)
       ] ++ [
         # Nix-related
         nix
