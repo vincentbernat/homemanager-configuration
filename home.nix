@@ -101,19 +101,11 @@
         polybar = (pkgs.polybar.override {
           inherit i3;
           i3Support = true;
-          pulseSupport = true;
+          alsaSupport = false;
+          pulseSupport = false;
         }).overrideAttrs (old: {
-          version = "3.6.3";
-          src = pkgs.fetchFromGitHub {
-            owner = "vincentbernat";
-            repo = "polybar";
-            rev = "1de459ea09cd"; # vbe/master
-            fetchSubmodules = true;
-            hash = "sha256-RVLOKaLPQxWeyuIDGiNUTTOC8u6z66a0R/h8I9xPruw=";
-          };
           patches = (old.patches or [ ]) ++ [
             ./patches/polybar-i3sock.patch
-            ./patches/i3ipcpp-cmake.patch
             (pkgs.fetchpatch {
               url = "https://github.com/polybar/polybar/pull/3159.diff";
               hash = "sha256-VWNtsplxvZE2D8MN7mC1ltzHSYnkqCHM52fzLOo1KaA=";

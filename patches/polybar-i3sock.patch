@@ -3,15 +3,15 @@ index bbba1d874823..14654e0f52c2 100644
 --- a/lib/i3ipcpp/src/ipc.cpp
 +++ b/lib/i3ipcpp/src/ipc.cpp
 @@ -252,6 +252,12 @@ static std::shared_ptr<bar_config_t>  parse_bar_config_from_json(const Json::Val
- std::string  get_socketpath() {
- 	std::string  str;
- 	{
+ std::string get_socketpath() {
+   std::string str;
+   {
 +    // Check for I3SOCK environment variable
 +    const char* i3sock = std::getenv("I3SOCK");
 +    if (i3sock != nullptr) {
 +        return std::string(i3sock);
 +    }
 +
- 		auss_t  str_buf;
- 		FILE*  in;
- 		char  buf[512] = {0};
+     auss_t str_buf;
+     FILE* in;
+     char buf[512] = {0};
