@@ -103,6 +103,7 @@
           i3Support = true;
           alsaSupport = false;
           pulseSupport = false;
+          nlSupport = false;
         }).overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             ./patches/polybar-i3sock.patch
