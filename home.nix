@@ -121,6 +121,17 @@
             })
           ];
         });
+        ttl = pkgs.rustPlatform.buildRustPackage rec {
+          pname = "ttl";
+          version = "0.12.5";
+          src = pkgs.fetchFromGitHub {
+            owner = "lance0";
+            repo = pname;
+            tag = "v${version}";
+            hash = "sha256-xJLOErsDLAMyzOqxPCBsff6uHrw5B1tI5UXupJ/Vjlk=";
+          };
+          cargoHash = "sha256-rRqd1enumzURqQvWYETbs2P8SDe5Zym3uqts69rkPV8=";
+        };
       in
       with pkgs; [
         bat
@@ -135,6 +146,7 @@
         less
         mergiraf
         tmux
+        ttl
         uv
         yt-dlp
         flakes.vbeterm.packages.${system}.default
