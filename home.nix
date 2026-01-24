@@ -132,6 +132,7 @@
         thunderbird
         gh
         glibcLocales
+        go_latest
         less
         mergiraf
         tmux
