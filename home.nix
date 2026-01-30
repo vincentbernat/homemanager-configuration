@@ -135,6 +135,7 @@
         go_latest
         less
         mergiraf
+        numbat
         tmux
         uv
         yt-dlp
