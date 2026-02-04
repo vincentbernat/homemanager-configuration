@@ -144,8 +144,8 @@
       ] ++ [
         # IA stuff
         claude-code
-        gemini-cli
-        # opencode
+        opencode
+        # gemini-cli
       ] ++ [
         # Emacs-related
         nodePackages.prettier
