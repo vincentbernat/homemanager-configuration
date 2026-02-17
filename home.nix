@@ -200,6 +200,7 @@
               "python"
               "rust"
               "typescript"
+              "tsx"
               "vue"
               "yaml"
               "yang"
