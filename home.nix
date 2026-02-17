@@ -209,7 +209,7 @@
           pkgs.runCommand "tree-sitter-languages" { } ''
             mkdir -p $out
             ${lib.concatMapStringsSep "\n" (lang: ''
-              cp ${pkgs.tree-sitter-grammars."tree-sitter-${lang}"}/parser $out/libtree-sitter-${lang}.so
+              ln -s ${pkgs.tree-sitter-grammars."tree-sitter-${lang}"}/parser $out/libtree-sitter-${lang}.so
             '') langs}
           '';
       in
