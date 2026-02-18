@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737365912,
-        "narHash": "sha256-wVU+xIP47XfxxXdrtx3z5VVhyoM1EZn6l1pN7hDiNDg=",
+        "lastModified": 1771443488,
+        "narHash": "sha256-I8nRfGl/2eQpLazXMx/wr3WTxHWDntjQwNkiZvrK8hk=",
         "owner": "vincentbernat",
         "repo": "vbeterm",
-        "rev": "11ac6a72f01baa61791defde55ee73694ea2aef5",
+        "rev": "40c6a8714e118aa9810fa6eaab4e5fb1b3751c68",
         "type": "github"
       },
       "original": {
