@@ -123,6 +123,7 @@
         });
       in
       with pkgs; [
+        ast-grep
         bat
         difftastic
         direnv
