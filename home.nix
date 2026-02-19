@@ -136,6 +136,7 @@
         less
         mergiraf
         numbat
+        sd
         tmux
         uv
         yt-dlp
