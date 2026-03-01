@@ -121,6 +121,16 @@
             })
           ];
         });
+        piper-tts = (pkgs.piper-tts.override {
+          withTrain = false;
+          withHTTP = false;
+          withAlignment = false;
+        }).overrideAttrs (old: {
+          propagatedBuildInputs =
+            (old.propagatedBuildInputs or [ ]) ++ (with pkgs.python3Packages; [
+              pathvalidate
+            ]);
+        });
       in
       with pkgs; [
         ast-grep
@@ -136,6 +146,7 @@
         less
         mergiraf
         numbat
+        piper-tts
         sd
         tmux
         uv
