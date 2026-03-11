@@ -146,6 +146,7 @@
         less
         mergiraf
         numbat
+        openbao
         piper-tts
         sd
         tmux
