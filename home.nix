@@ -209,6 +209,7 @@
               "jsdoc"
               "json"
               "lua"
+              "markdown"
               "nix"
               "python"
               "rust"
