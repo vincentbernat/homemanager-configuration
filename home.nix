@@ -135,7 +135,6 @@
       with pkgs; [
         ast-grep
         bat
-        difftastic
         direnv
         docker-client
         doggo
