@@ -161,7 +161,7 @@
         # gemini-cli
       ] ++ [
         # Emacs-related
-        nodePackages.prettier
+        prettier
         eslint
         yaml-language-server
         beancount-language-server
