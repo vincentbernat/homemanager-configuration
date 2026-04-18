@@ -32,6 +32,11 @@
               url = "https://github.com/NixOS/nixpkgs/pull/510736.patch";
               hash = "sha256-Kal414T04hjDNth2JvsvEabhzeQ4fl+8N8omNw5FWcU=";
             })
+            # claude-code 2.1.114
+            (pkgs.fetchpatch {
+              url = "https://github.com/NixOS/nixpkgs/pull/511117.patch";
+              hash = "sha256-dm8oXIWNTu94TST0UU/TMl88Qwizqldhu4s/TJBAE5A=";
+            })
           ]);
         })
         {
