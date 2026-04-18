@@ -131,6 +131,11 @@
               pathvalidate
             ]);
         });
+        spotify-player = pkgs.spotify-player.override {
+          withAudioBackend = "pulseaudio";
+          withNotify = false;
+          withSixel = false;
+        };
       in
       with pkgs; [
         ast-grep
@@ -148,6 +153,7 @@
         openbao
         piper-tts
         sd
+        spotify-player
         tmux
         uv
         yt-dlp
