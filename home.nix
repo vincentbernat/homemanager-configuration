@@ -144,11 +144,11 @@
         glibcLocales
         less
         mergiraf
-        ncspot
         numbat
         openbao
         piper-tts
         sd
+        spotifyd
         tmux
         uv
         yt-dlp
