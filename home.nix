@@ -107,10 +107,6 @@
         }).overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             ./patches/polybar-i3sock.patch
-            (pkgs.fetchpatch {
-              url = "https://github.com/polybar/polybar/pull/3159.diff";
-              hash = "sha256-VWNtsplxvZE2D8MN7mC1ltzHSYnkqCHM52fzLOo1KaA=";
-            })
           ];
         });
         direnv = pkgs.direnv.overrideAttrs (old: {
