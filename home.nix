@@ -104,6 +104,15 @@
           alsaSupport = false;
           pulseSupport = false;
           nlSupport = false;
+          jsoncpp = pkgs.jsoncpp.overrideAttrs (old: {
+            patches = (old.patches or [ ]) ++ [
+              (pkgs.fetchpatch {
+                # https://github.com/open-source-parsers/jsoncpp/pull/1675
+                url = "https://github.com/open-source-parsers/jsoncpp/commit/c67034e4b4c722579ee15fddb8e4af8f04252b08.patch";
+                hash = "sha256-E0kOIUi+o8wPuePphAZ/JvUylIZbx0ejVER67flmiIA=";
+              })
+            ];
+          });
         }).overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             ./patches/polybar-i3sock.patch
