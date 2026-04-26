@@ -154,6 +154,7 @@
         piper-tts
         sd
         spotifyd
+        spotify-player
         tmux
         uv
         yt-dlp
