@@ -157,7 +157,6 @@
         spotify-player
         tmux
         uv
-        yt-dlp
         flakes.vbeterm.packages.${system}.default
         # Cannot add:
         # - xsecurelock (uses PAM)
