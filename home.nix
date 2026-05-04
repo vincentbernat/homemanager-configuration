@@ -144,8 +144,6 @@
         openbao
         piper-tts
         sd
-        spotifyd
-        spotify-player
         tmux
         uv
         flakes.vbeterm.packages.${system}.default
