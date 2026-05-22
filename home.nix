@@ -138,6 +138,7 @@
         thunderbird
         gh
         glibcLocales
+        goperf
         less
         mergiraf
         numbat
