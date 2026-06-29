@@ -162,7 +162,7 @@
         yaml-language-server
         beancount-language-server
         typescript-language-server
-        vue-language-server
+        # vue-language-server
         nixd # (Nix LSP)
         gopls # (Go LSP)
         ruff # (Python linter)
