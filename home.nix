@@ -127,14 +127,6 @@
               pathvalidate
             ]);
         });
-        claude-code = pkgs.claude-code.override {
-          manifest = {
-            version = "2.1.220";
-            platforms.linux-x64 = {
-              checksum = "674f61f20ff306f3100cf9200e4c36c4b70278b5bef2884549819b942a89c863";
-            };
-          };
-        };
       in
       with pkgs; [
         ast-grep
