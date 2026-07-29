@@ -214,6 +214,7 @@
               "vue"
               "yaml"
               "yang"
+              "zig"
             ];
           in
           pkgs.runCommand "tree-sitter-languages" { } ''
