@@ -172,6 +172,7 @@
         nix-zsh-completions
         nixpkgs-fmt
         nix-direnv
+        flakes.nixgl.packages.${system}.nixGLIntel
       ] ++ [
         # i3-related
         dragon-drop
