@@ -127,6 +127,18 @@
               pathvalidate
             ]);
         });
+        claude-code =
+          let
+            manifest = {
+              version = "2.1.220";
+              platforms.linux-x64 = {
+                checksum = "674f61f20ff306f3100cf9200e4c36c4b70278b5bef2884549819b942a89c863";
+              };
+            };
+          in
+          lib.throwIf (lib.versionOlder manifest.version pkgs.claude-code.version)
+            "claude-code is pinned to ${manifest.version} but nixpkgs has ${pkgs.claude-code.version}"
+            (pkgs.claude-code.override { inherit manifest; });
       in
       with pkgs; [
         ast-grep
