@@ -127,6 +127,18 @@
               pathvalidate
             ]);
         });
+        claude-code =
+          let
+            manifest = {
+              version = "2.1.226";
+              platforms.linux-x64 = {
+                checksum = "sha256-TpvsEXfOlpDovZiLcQrCQQXnDaQo3QlMWty754alVVU=";
+              };
+            };
+          in
+          lib.throwIf (lib.versionOlder manifest.version pkgs.claude-code.version)
+            "claude-code is pinned to ${manifest.version} but nixpkgs has ${pkgs.claude-code.version}"
+            (pkgs.claude-code.override { inherit manifest; });
       in
       with pkgs; [
         ast-grep
@@ -143,7 +155,6 @@
         mergiraf
         numbat
         openbao
-        pnpm
         piper-tts
         sd
         tmux
