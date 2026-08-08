@@ -155,6 +155,7 @@
         mergiraf
         numbat
         openbao
+        pnpm
         piper-tts
         sd
         tmux
