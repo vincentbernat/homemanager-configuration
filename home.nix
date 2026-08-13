@@ -128,6 +128,7 @@
             ]);
         });
         claude-code =
+          # I leave it here for documentation purpose.
           let
             manifest = {
               version = "2.1.226";
@@ -165,7 +166,7 @@
         # - xsecurelock (uses PAM)
       ] ++ [
         # IA stuff
-        claude-code
+        pkgs.claude-code
         opencode
         # gemini-cli
       ] ++ [
