@@ -2,6 +2,8 @@
 
 {
   programs.home-manager.enable = true;
+  nix.registry.nixpkgs.flake = flakes.nixpkgs;
+  xdg.configFile."nix/registry.json".force = true;
 
   home = {
     username = "bernat";
