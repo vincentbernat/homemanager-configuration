@@ -226,6 +226,7 @@
               "nix"
               "python"
               "rust"
+              "toml"
               "typescript"
               "tsx"
               "vue"
