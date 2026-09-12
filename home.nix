@@ -79,6 +79,7 @@
         }).overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             ./patches/thunderbird-identities.patch
+            ./patches/thunderbird-folder-drag.patch
           ];
           prePatch = ''
             ${pkgs.unzip}/bin/unzip -d omni omni.ja

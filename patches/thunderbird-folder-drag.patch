@@ -1,0 +1,11 @@
+--- ./omni/chrome/messenger/content/messenger/about3Pane.js
++++ ./omni/chrome/messenger/content/messenger/about3Pane.js
+@@ -3119,7 +3119,7 @@
+ 
+   _onDragStart(event) {
+     const draggedRow = event.target.closest(`li[is="folder-tree-row"]`);
+-    if (!draggedRow) {
++    if (!draggedRow || !event.shiftKey) {
+       event.preventDefault();
+       return;
+     }
