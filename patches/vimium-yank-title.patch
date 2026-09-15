@@ -1,0 +1,62 @@
+diff -ru a/background_scripts/all_commands.js b/background_scripts/all_commands.js
+--- a/background_scripts/all_commands.js	2026-09-15 06:53:43.586272137 +0200
++++ b/background_scripts/all_commands.js	2026-09-15 06:53:52.481721315 +0200
+@@ -108,6 +108,13 @@
+   },
+ 
+   {
++    name: "copyCurrentTitle",
++    desc: "Copy the current page title to the clipboard",
++    group: "navigation",
++    noRepeat: true,
++  },
++
++  {
+     name: "openCopiedUrlInCurrentTab",
+     desc: "Open the clipboard's URL in the current tab",
+     group: "navigation",
+diff -ru a/background_scripts/commands.js b/background_scripts/commands.js
+--- a/background_scripts/commands.js	2026-09-15 06:53:43.586321590 +0200
++++ b/background_scripts/commands.js	2026-09-15 06:53:59.393711190 +0200
+@@ -423,6 +423,7 @@
+   "r": "reload",
+   "R": "reload hard",
+   "yy": "copyCurrentUrl",
++  "yT": "copyCurrentTitle",
+   "p": "openCopiedUrlInCurrentTab",
+   "P": "openCopiedUrlInNewTab",
+   "gi": "focusInput",
+diff -ru a/background_scripts/main.js b/background_scripts/main.js
+--- a/background_scripts/main.js	2026-09-15 06:53:43.586469577 +0200
++++ b/background_scripts/main.js	2026-09-15 06:53:57.657713736 +0200
+@@ -606,6 +606,9 @@
+   getCurrentTabUrl({ tab }) {
+     return tab.url;
+   },
++  getCurrentTabTitle({ tab }) {
++    return tab.title;
++  },
+   openUrlInNewTab: createRepeatCommand(async (request, callback) => {
+     await TabOperations.openUrlInNewTab(request, callback);
+   }),
+diff -ru a/content_scripts/mode_normal.js b/content_scripts/mode_normal.js
+--- a/content_scripts/mode_normal.js	2026-09-15 06:53:43.586788004 +0200
++++ b/content_scripts/mode_normal.js	2026-09-15 06:53:55.549716822 +0200
+@@ -176,6 +176,17 @@
+     });
+   },
+ 
++  copyCurrentTitle() {
++    chrome.runtime.sendMessage({ handler: "getCurrentTabTitle" }, function (title) {
++      HUD.copyToClipboard(title);
++      const maxLength = 40;
++      if (title.length > maxLength) {
++        title = title.slice(0, maxLength - 2) + "...";
++      }
++      HUD.show(`Yanked ${title}`, 2000);
++    });
++  },
++
+   openCopiedUrlInNewTab(count, request) {
+     HUD.pasteFromClipboard((url) =>
+       chrome.runtime.sendMessage({
