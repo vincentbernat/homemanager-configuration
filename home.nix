@@ -52,40 +52,27 @@
             install -D -t $out/share/applications $desktopItem/share/applications/*
           '';
         };
-        vimium = pkgs.stdenvNoCC.mkDerivation rec {
+        firefox-addon = { pname, version, url, sha256, patches ? [ ] }:
+          pkgs.stdenvNoCC.mkDerivation {
+            inherit pname version patches;
+            src = pkgs.fetchurl { inherit url sha256; };
+            sourceRoot = "source";
+            unpackPhase = ''
+              ${pkgs.unzip}/bin/unzip -d source $src
+            '';
+            installPhase = ''
+              rm -rf META-INF
+              cp -r . $out
+            '';
+          };
+        vimium = firefox-addon rec {
           pname = "vimium";
           version = "2.4.2";
-          src = pkgs.fetchFromGitHub {
-            owner = "philc";
-            repo = "vimium";
-            rev = "v${version}";
-            hash = "sha256-i4JT2moQSVGzygC4BDAqkjioCAJiFCo5Bc5pmIAfovE=";
-          };
+          url = "https://addons.mozilla.org/firefox/downloads/file/4717567/vimium_ff-${version}.xpi";
+          sha256 = "131e2a67580e7ae9125ab19781159e61409fac47b441fc2782aab76396ead196";
           patches = [
             ./patches/vimium-yank-title.patch
           ];
-          passthru.addonId = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
-          nativeBuildInputs = [ pkgs.jq ];
-          installPhase = ''
-            mkdir -p $out
-            cp -r background_scripts content_scripts icons lib pages resources $out
-            rm $out/background_scripts/reload.js $out/pages/reload.html
-
-            # Same changes as createFirefoxManifest() in make.js
-            sed -E -e 's#^\s*//.*##' -e 's#,\s*//.*#,#' manifest.json | jq --arg id '${passthru.addonId}' '
-              .permissions = [.permissions[] | select(. != "favicon")] + ["clipboardRead", "clipboardWrite"]
-              | del(.background.service_worker)
-              | .background.scripts = ["background_scripts/main.js"]
-              | .action.default_area = "navbar"
-              | .action.default_icon = "icons/action_disabled.svg"
-              | .browser_specific_settings.gecko = {
-                  id: $id,
-                  strict_min_version: "112.0",
-                  data_collection_permissions: { required: ["none"] }
-                }
-              | .icons = ([16, 32, 48, 64, 96, 128] | map({ key: tostring, value: "icons/icon.svg" }) | from_entries)
-            ' > $out/manifest.json
-          '';
         };
         firefox = (firefox-or-thunderbird rec {
           pname = "firefox";
@@ -104,7 +91,7 @@
           # Built-in add-ons don't need a signature. Other add-ons still need one.
           postPatch =
             let
-              vimium-dir = baseNameOf "${vimium}";
+              builtin-addons = [ vimium ];
             in
             ''
               # The jar is optimized. unzip returns 2 but extracts all files.
@@ -112,15 +99,21 @@
               rm browser/omni.ja
 
               # Firefox reloads a built-in add-on only when its version or URL
-              # changes. The directory name changes with each Vimium build.
-              cp -r --no-preserve=mode ${vimium} omni/chrome/browser/builtin-addons/${vimium-dir}
-              ${pkgs.jq}/bin/jq \
-                --arg id '${vimium.addonId}' \
-                --arg version '${vimium.version}' \
-                --arg url 'resource://builtin-addons/${vimium-dir}/' \
-                '.builtins += [{ addon_id: $id, addon_version: $version, res_url: $url }]' \
-                omni/chrome/browser/content/browser/built_in_addons.json > built_in_addons.json
-              mv built_in_addons.json omni/chrome/browser/content/browser/built_in_addons.json
+              # changes. The directory name changes with each build of the add-on.
+              for addon in ${toString builtin-addons}; do
+                dir=$(basename $addon)
+                cp -r --no-preserve=mode $addon omni/chrome/browser/builtin-addons/$dir
+                ${pkgs.jq}/bin/jq \
+                  --slurpfile manifest $addon/manifest.json \
+                  --arg url "resource://builtin-addons/$dir/" \
+                  '.builtins += [$manifest[0] | {
+                    addon_id: ((.browser_specific_settings // .applications).gecko.id // error("no add-on ID in manifest")),
+                    addon_version: .version,
+                    res_url: $url
+                  }]' \
+                  omni/chrome/browser/content/browser/built_in_addons.json > built_in_addons.json
+                mv built_in_addons.json omni/chrome/browser/content/browser/built_in_addons.json
+              done
 
               cd omni
               ${pkgs.zip}/bin/zip -0DXqr ../browser/omni.ja *
