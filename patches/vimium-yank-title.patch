@@ -22,7 +22,7 @@ diff -ru a/background_scripts/commands.js b/background_scripts/commands.js
    "r": "reload",
    "R": "reload hard",
    "yy": "copyCurrentUrl",
-+  "yT": "copyCurrentTitle",
++  "yn": "copyCurrentTitle",
    "p": "openCopiedUrlInCurrentTab",
    "P": "openCopiedUrlInNewTab",
    "gi": "focusInput",
