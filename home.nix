@@ -189,9 +189,10 @@
           # I leave it here for documentation purpose.
           let
             manifest = {
-              version = "2.1.226";
+              version = "2.1.280";
               platforms.linux-x64 = {
-                checksum = "sha256-TpvsEXfOlpDovZiLcQrCQQXnDaQo3QlMWty754alVVU=";
+                binary = "claude.zst";
+                checksum = "27910e2ae704d8f2e8024897d8fdf1e7710807baf4f6982c0e3797c058315384";
               };
             };
           in
@@ -224,7 +225,7 @@
         # - xsecurelock (uses PAM)
       ] ++ [
         # IA stuff
-        pkgs.claude-code
+        claude-code
         opencode
         # gemini-cli
       ] ++ [
