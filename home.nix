@@ -231,7 +231,7 @@
         # - xsecurelock (uses PAM)
       ] ++ [
         # IA stuff
-        claude-code
+        pkgs.claude-code
         opencode
         # gemini-cli
       ] ++ [
