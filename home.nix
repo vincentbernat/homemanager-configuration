@@ -175,12 +175,6 @@
             })
           ];
         });
-        # Remove when https://github.com/NixOS/nixpkgs/pull/568226 is available
-        mergiraf = pkgs.mergiraf.overrideAttrs (old: {
-          env = (old.env or { }) // {
-            NIX_CFLAGS_COMPILE = "-fno-strict-aliasing";
-          };
-        });
         piper-tts = (pkgs.piper-tts.override {
           withTrain = false;
           withHTTP = false;
