@@ -176,6 +176,13 @@
             })
           ];
         });
+        nix-direnv = pkgs.nix-direnv.overrideAttrs (old: {
+          # Don't add GC roots for flake inputs (this avoids a copy)
+          installPhase = old.installPhase + ''
+            chmod u+w $out/share/nix-direnv/direnvrc
+            substituteInPlace $out/share/nix-direnv/direnvrc --replace-fail '_nix flake archive' 'true'
+          '';
+        });
         piper-tts = (pkgs.piper-tts.override {
           withTrain = false;
           withHTTP = false;
