@@ -3,6 +3,7 @@
 {
   programs.home-manager.enable = true;
   nix.registry.nixpkgs.flake = flakes.nixpkgs;
+  nix.package = pkgs.nixVersions.latest;
   xdg.configFile."nix/registry.json".force = true;
 
   home = {
@@ -241,7 +242,7 @@
         ruff # (Python linter)
       ] ++ [
         # Nix-related
-        nix
+        config.nix.package
         nix-zsh-completions
         nixpkgs-fmt
         nix-direnv
