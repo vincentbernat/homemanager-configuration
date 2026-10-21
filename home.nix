@@ -187,11 +187,7 @@
           withTrain = false;
           withHTTP = false;
           withAlignment = false;
-        }).overrideAttrs (old: {
-          propagatedBuildInputs =
-            (old.propagatedBuildInputs or [ ]) ++ (with pkgs.python3Packages; [
-              pathvalidate
-            ]);
+          withJapanese = false;
         });
         claude-code =
           # I leave it here for documentation purpose.
