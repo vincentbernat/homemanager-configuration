@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "No search history",
+  "description": "Remove search engine pages from history",
+  "version": "1.0",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "no-search-history@bernat.ch"
+    }
+  },
+  "permissions": ["history"],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

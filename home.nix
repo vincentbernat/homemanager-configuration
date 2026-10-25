@@ -75,6 +75,9 @@
             ./patches/vimium-yank-title.patch
           ];
         };
+        no-search-history = pkgs.runCommand "no-search-history" { } ''
+          cp -r ${./files/firefox-addons/no-search-history} $out
+        '';
         firefox = (firefox-or-thunderbird rec {
           pname = "firefox";
           inherit (pkgs.firefox-bin-unwrapped) version src;
@@ -89,10 +92,11 @@
             "x-scheme-handler/ftp"
           ];
         }).overrideAttrs (old: {
-          # Built-in add-ons don't need a signature. Other add-ons still need one.
+          # Built-in add-ons don't need a signature.
+          # They are listed in about:debugging#/runtime/this-firefox, not in about:addons.
           postPatch =
             let
-              builtin-addons = [ vimium ];
+              builtin-addons = [ vimium no-search-history ];
             in
             ''
               # The jar is optimized. unzip returns 2 but extracts all files.
