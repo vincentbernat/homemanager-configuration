@@ -6,10 +6,6 @@
       url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vbeterm = {
       url = "github:vincentbernat/vbeterm";
       inputs.nixpkgs.follows = "nixpkgs";
