@@ -103,6 +103,12 @@
               ${pkgs.unzip}/bin/unzip -q -d omni browser/omni.ja || [ $? -eq 2 ]
               rm browser/omni.ja
 
+              # Web pages cannot override reserved shortcuts.
+              sed -i -E 's,<key id="key_select(Tab[1-8]|LastTab)" [^/]*,& reserved="true",' \
+                omni/chrome/browser/content/browser/browser.xhtml
+              [ $(grep -cE 'key_select(Tab[1-8]|LastTab)".*reserved="true"' \
+                omni/chrome/browser/content/browser/browser.xhtml) -eq 9 ]
+
               # Firefox reloads a built-in add-on only when its version or URL
               # changes. The directory name changes with each build of the add-on.
               for addon in ${toString builtin-addons}; do
