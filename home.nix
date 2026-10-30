@@ -317,9 +317,9 @@
       };
 
     activation = {
-      diff = lib.hm.dag.entryBefore [ "installPackages" ] ''
+      diff = lib.hm.dag.entryAnywhere ''
         [[ -z "''${oldGenPath:-}" ]] || [[ "$oldGenPath" = "$newGenPath" ]] || \
-           ${pkgs.nvd}/bin/nvd diff "$oldGenPath" "$newGenPath"
+           ${pkgs.dix}/bin/dix diff "$oldGenPath" "$newGenPath"
       '';
       browserpass =
         let
@@ -328,7 +328,7 @@
           };
         in
         lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
+          run ln -sf $VERBOSE_ARG \
             ${browserpass}/lib/mozilla/native-messaging-hosts/com.github.browserpass.native.json \
             ~/.mozilla/native-messaging-hosts/.
         '';
