@@ -73,6 +73,7 @@
           sha256 = "131e2a67580e7ae9125ab19781159e61409fac47b441fc2782aab76396ead196";
           patches = [
             ./patches/vimium-yank-title.patch
+            ./patches/vimium-yank-markdown.patch
           ];
         };
         no-search-history = pkgs.runCommand "no-search-history" { } ''
